@@ -62,11 +62,11 @@ function registrarUsuario() {
             }),
             success: function (result) {
                 let parsedResult = JSON.parse(result);
-
+                console.log(parsedResult);
                 if (parsedResult != false) {
                     $("#register-error").addClass("d-none");
                     let username = parsedResult['usuario'];
-                    document.location.href = "index.html?username=" + username;
+                    // document.location.href = "index.html?username=" + username;
                 } else {
                     $("#register-error").removeClass("d-none");
                     $("#register-error").html("Error en el registro del usuario");

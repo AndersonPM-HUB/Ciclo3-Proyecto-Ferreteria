@@ -48,4 +48,37 @@ public class UsuarioController implements IUsuarioController{
         return "false";
     }
     
+    @Override
+    public String register(String user, String nombres, String apellidos, String correo, String contrasena) {
+        Gson gson = new Gson();
+        DBConnection con = new DBConnection();
+
+        String sql = "";
+        try {
+            sql = "INSERT INTO usuarios (usuario, nombres, apellidos, correo, contrasena) VALUES('" + user + "', '" + nombres + "', '" + apellidos
+                    + "', '" + correo + "', '" + Usuario.encriptarContrasena(contrasena.strip()) + "')";
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            Statement st = con.getConnection().createStatement();
+            st.executeUpdate(sql);
+
+            Usuario usuario = new Usuario(user, nombres, apellidos, correo, Usuario.encriptarContrasena(contrasena.strip()));
+            st.close();
+            return gson.toJson(usuario);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            con.desconectar();
+        }
+
+        return "false";
+    }
 }
+
