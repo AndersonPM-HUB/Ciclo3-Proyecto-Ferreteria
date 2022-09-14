@@ -128,18 +128,19 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombres` varchar(100) COLLATE latin1_bin DEFAULT NULL,
   `apellidos` varchar(100) COLLATE latin1_bin DEFAULT NULL,
   `correo` varchar(150) COLLATE latin1_bin NOT NULL,
-  `contraseña` binary(32) DEFAULT NULL,
+  `contrasena` varchar(128) COLLATE latin1_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
 -- Volcando datos para la tabla ferreteria.usuarios: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`id`, `usuario`, `nombres`, `apellidos`, `correo`, `contraseña`) VALUES
+INSERT INTO `usuarios` (`id`, `usuario`, `nombres`, `apellidos`, `correo`, `contrasena`) VALUES
 	(1, 'Valen7v', 'Dana Valentina', 'Manchego Alvarez', 'danamanchego7065@gmail.com', NULL),
 	(2, 'JAnto21', 'Julian Antonio', 'Maldonado Rico', 'julianto1991@gmail.com', NULL),
 	(3, 'CarlBele5', 'Carlos', 'Belen Lara', 'carlbe505@gmail.com', NULL),
 	(4, 'MariJofe', 'Maria José', 'Castillo Paez', 'mariapaez2000@gmail.com', NULL),
-	(5, 'Alej02', 'Alejandra', 'Rodriguez Romero', 'alejaromero2022@gmail.com', NULL);
+	(5, 'Alej02', 'Alejandra', 'Rodriguez Romero', 'alejaromero2022@gmail.com', NULL),
+	(6, 'admin', 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

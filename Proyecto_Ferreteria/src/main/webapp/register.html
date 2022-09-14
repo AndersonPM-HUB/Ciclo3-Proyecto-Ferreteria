@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+            <!-- Popper JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            
+            <!-- Fonts -->
+            <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+
+            <script src="js/index.js"></script>
+            <link href="css/index.css" rel="stylesheet">
+            <title>Registro | FerreProyectos</title>
+    </head>
+    <body>
+        <main class="p-4 d-flex justify-content-center">
+            <div class="card sizeDiv bg-gray rounded-0 border border-white">
+                <div class="container bg-white red pl-5 pb-2">
+                    <h2>FerreProyectos</h2>
+                </div>
+                <div class="card-body">
+                    <form id="form-register" class="pb-3 m-3">
+                        <h2 class="text-center p-3 mb-3">Registra tu cuenta</h2>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Nombres</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-nombres" placeholder="Ingresa tus nombres" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Apellidos</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-apellidos" placeholder="Ingresa tus apellidos" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Usuario (Documento)</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-usuario" placeholder="Ingresa tu documento" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Correo</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-correo" placeholder="Ingresa tu correo" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group mb-3 col-md-6">
+                                <span class="input-group-text bg-light-red white border-span">Contraseña</span>
+                                <input type="password" class="form-control bg-light-gray border-input" id="input-contrasena" placeholder="Ingresa tu contraseña" required>
+                            </div>
+                            <div class="input-group mb-3 col-md-6">
+                                <span class="input-group-text bg-light-red white border-span">Repetir contraseña</span>
+                                <input type="password" class="form-control bg-light-gray border-input" id="input-contrasena-repeat" placeholder="Repite tu contraseña" required>
+                            </div>
+                        </div>
+                        </br>
+                        <div class="container">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" class="btn bg-light-gray border-input px-4" id="register-btn" value="Registrar" />
+                            </div>
+                        </div>
+                    </form>
+                    <div id="register-error" class="alert alert-danger d-none" role="alert"></div>
+                    <div class="container">
+                        <div class="col-md-12 text-center">
+                            <a href="login.html" class="red accountSize">¿Ya tienes cuenta? Iniciar sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
