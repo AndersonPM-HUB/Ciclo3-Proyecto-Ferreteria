@@ -14,48 +14,64 @@
 
             <!-- Latest compiled JavaScript -->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="js/index.js"></script>
-        <link href="css/index.css" rel="stylesheet">
-        <title>Registro | FerreProyectos</title>
+            
+            <!-- Fonts -->
+            <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+
+            <script src="js/index.js"></script>
+            <link href="css/index.css" rel="stylesheet">
+            <title>Registro | FerreProyectos</title>
     </head>
     <body>
         <main class="p-4 d-flex justify-content-center">
-            <div class="card sizeDiv">
+            <div class="card sizeDiv bg-gray rounded-0 border border-white">
+                <div class="bg-white red pl-5 pb-2">
+                    <h2>FerreProyectos</h2>
+                </div>
                 <div class="card-body">
-                    <form id="form-register" class="pb-4">
-                        <div class="form-group">
-                            <label for="input-username">Usuario (Cedula)</label>
-                            <input type="text" class="form-control" id="input-usuario" placeholder="Usuario" required>
+                    <form id="form-register" class="pb-3 m-3">
+                        <h2 class="text-center p-3 mb-3">Registra tu cuenta</h2>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Nombres</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-nombres" placeholder="Ingresa tus nombres" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Apellidos</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-apellidos" placeholder="Ingresa tus apellidos" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Usuario (Documento)</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-usuario" placeholder="Ingresa tu documento" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text bg-light-red white border-span">Correo</span>
+                            <input type="text" class="form-control bg-light-gray border-input" id="input-correo" placeholder="Ingresa tu correo" required>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="input-contrasena">Contraseña</label>
-                                <input type="password" class="form-control" id="input-contrasena" placeholder="Contraseña" required>
+                            <div class="input-group mb-3 col-md-6">
+                                <span class="input-group-text bg-light-red white border-span">Contraseña</span>
+                                <input type="password" class="form-control bg-light-gray border-input" id="input-contrasena" placeholder="Ingresa tu contraseña" required>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="input-contrasena-repeat">Repetir contraseña</label>
-                                <input type="password" class="form-control" id="input-contrasena-repeat" placeholder="Repetir contraseña" required>
+                            <div class="input-group mb-3 col-md-6">
+                                <span class="input-group-text bg-light-red white border-span">Repetir contraseña</span>
+                                <input type="password" class="form-control bg-light-gray border-input" id="input-contrasena-repeat" placeholder="Repite tu contraseña" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="input-nombre">Nombres</label>
-                            <input type="text" class="form-control" id="input-nombres" placeholder="Nombre" required>
+                        </br>
+                        <div class="container">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" class="btn bg-light-gray border-input px-4" id="register-btn" value="Registrar" />
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="input-apellidos">Apellidos</label>
-                            <input type="text" class="form-control" id="input-apellidos" placeholder="Apellidos" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-email">Correo</label>
-                            <input type="text" class="form-control" id="input-correo" placeholder="Correo" required>
-                        </div>
-                        <input type="submit" class="btn btn-primary" id="register-btn" value="Registrar usuario" />
                     </form>
                     <div id="register-error" class="alert alert-danger d-none" role="alert"></div>
-                    <br/>
-                    <a href="login.html">¿Ya tienes cuenta? Iniciar sesión</a>
+                    <div class="container">
+                        <div class="col-md-12 text-center">
+                            <a href="login.html" class="red accountSize">¿Ya tienes cuenta? Iniciar sesión</a>
+                        </div>
+                    </div>
                 </div>
-            </div> 
+            </div>
         </main>
     </body>
 </html>

@@ -5,8 +5,39 @@
     background-size: 445px;
     border: 0px;
 }
+body {
+    font-family: 'Nunito';
+    font-size: 18px;
+}
+.accountSize{
+    font-size: 16px;
+}
+.bg-gray{
+    background-color: #d9d9d9;
+}
+.bg-light-gray{
+    background-color: #eeeeee;
+}
+.bg-light-red{
+    background-color: #ff4d4d;
+}
+.bg-white{
+    background-color: white;
+}
+.red{
+    color: #dd191d;
+}
+.white{
+    color: white;
+}
 .sizeDiv{
-    width: 40vw;
+    width: 57vw;
+}
+.border-input{
+    border-radius: 20px;
+}
+.border-span{
+    border-radius: 20px 0px 0px 20px;
 }
 img{
     width: auto;
