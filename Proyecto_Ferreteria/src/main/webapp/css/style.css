@@ -1,0 +1,53 @@
+
+body {
+
+  background-image: url("../img/bg-home.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  font-family: "Nunito";
+}
+
+
+.male-home-img{
+    width:800px;
+    height:800px;
+    position: fixed;
+    left:100px;
+}
+
+.imagenes-laterales{
+    width:800px;
+    height:200px;
+    position: fixed;
+    right:50px;
+}
+.tools-img{
+    width:200px;
+    height:200px;  
+    display:block;
+    margin:auto;
+
+}
+.navbar{
+    width:90%;
+    margin:auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ 
+}
+.navbar ul li{
+    list-style: none;
+    display:inline-block;
+    margin:0 10px;
+    
+}
+.navbar ul li a{
+    text-decoration: none;
+    color: rgb(220,20,60);
+    font-family:"Nunito semibold";
+    size: 1.2 rem;
+}
