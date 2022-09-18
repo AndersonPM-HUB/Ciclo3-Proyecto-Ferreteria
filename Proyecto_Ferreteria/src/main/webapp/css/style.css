@@ -1,14 +1,13 @@
 
 body {
-
   background-image: url("../img/bg-home.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
+  font-size: 18px;
   font-family: "Nunito";
 }
-
 
 .male-home-img{
     width:800px;
@@ -23,6 +22,7 @@ body {
     position: fixed;
     right:50px;
 }
+
 .tools-img{
     width:200px;
     height:200px;  
@@ -30,50 +30,27 @@ body {
     margin:auto;
 
 }
+
 .navbar{
     width:90%;
     margin:auto;
-    padding: 35px 0;
+    padding: 7px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
  
 }
+
 .navbar ul li{
     list-style: none;
     display:inline-block;
     margin:0 10px;
     
 }
+
 .navbar ul li a{
     text-decoration: none;
     color: rgb(220,20,60);
-    font-family:"Nunito semibold";
+    /* font-family:"Nunito semibold"; */
     size: 1.2 rem;
-}
-
-#seccion-categorias{
-    border-radius: 10px; 
-    margin-left: 0;
-}
-
-.card{
-    display: flex;
-    width: 15rem;
-    margin: 20px;
-    border:solid black; 
-
-}
-.card .card-img-top{
-    height: 40%; 
-}
-.col-md-9{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    background-color: white;
-    
-}
-
-.container{
-    margin: 20px;
 }

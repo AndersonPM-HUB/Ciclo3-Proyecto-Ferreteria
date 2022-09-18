@@ -1,47 +1,84 @@
 .bg-login-image{
-    background: url("../img/bg-login.png");
+    background: url("");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 445px;
     border: 0px;
 }
+
 body {
     font-family: 'Nunito';
     font-size: 18px;
+    background-image: url("../img/bg-home.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
 }
+
 .accountSize{
     font-size: 16px;
 }
+
 .bg-gray{
     background-color: #d9d9d9;
 }
+
 .bg-light-gray{
     background-color: #eeeeee;
 }
+
 .bg-light-red{
     background-color: #ff4d4d;
 }
+
 .bg-white{
     background-color: white;
 }
+
+.bg-transparent{
+    background-color: transparent;
+}
+
 .red{
     color: #dd191d;
 }
+
 .white{
     color: white;
 }
+
 .sizeDiv{
     width: 57vw;
 }
+
 .border-input{
     border-radius: 20px;
 }
+
 .border-span{
     border-radius: 20px 0px 0px 20px;
 }
-img{
-    width: auto;
-    height: auto;
-    max-width: 445px; 
-    max-height: 445px
+
+.navbar{
+    width:90%;
+    margin:auto;
+    padding: 7px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ 
+}
+
+.navbar ul li{
+    list-style: none;
+    display:inline-block;
+    margin:0 10px;
+    
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: rgb(220,20,60);
+    /* font-family:"Nunito semibold"; */
 }
