@@ -1,0 +1,27 @@
+.card{
+    display: flex;
+    width: 15rem;
+    margin: 20px;
+    border:solid black; 
+
+}
+
+.card .card-img-top{
+    height: 40%; 
+}
+
+.col-md-9{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background-color: white;
+    
+}
+
+.container{
+    margin: 20px;
+}
+
+#seccion-categorias{
+    border-radius: 10px; 
+    margin-left: 0;
+}
