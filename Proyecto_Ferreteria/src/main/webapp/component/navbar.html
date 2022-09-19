@@ -1,5 +1,5 @@
 <div class="container-fluid p-2 text-light text-left">
-    <div class="navbar">
+    <div id="nav-main" class="navbar">
         <h1 class="white">FerreProyectos</h1>
         <ul class="nav justify-content-end">
             <li class="nav-item">
@@ -8,17 +8,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="productos.html">Productos</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" id="login-item" href="login.html">Ingresar</a>
+            <li id="login-item" class="nav-item d-none login-item">
+                <a class="nav-link"  href="login.html">Ingresar</a>
             </li>
-            <li class="nav-item" id="register-item">
+            <li id="register-item" class="nav-item d-none register-item">
                 <a class="nav-link" href="register.html">Registrarse</a>
             </li>
             <li class="nav-item">
                 <a href="#"><img src="./img/shoppingcart.png" height="25"></a>
             </li>
-            <li class="nav-item dropdown d-none">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            <li id="user-dropdown" class="nav-item dropdown d-none user-dropdown">
+                <a class="nav-link dropdown-toggle username-nav" id="username-nav" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                   Default
                 </a>
                 <div class="dropdown-menu">
@@ -26,7 +26,7 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Cerrar sesión</a>
                 </div>
-              </li>
+            </li>
         </ul>
     </div>
 </div>
