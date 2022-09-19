@@ -1,15 +1,16 @@
-$(document).ready(function () {
-    $("#ferr-navbar").load("component/navbar.html");
+$(document).ready(function(){
+    $(window).ready(function(){
+        $("#ferr-navbar").load("component/navbar.html");
+    });
 
-    $(window).on('load', async function(){
+    $(window).on('load', function(){
         if (getCookie('state')){
             if(window.location.pathname === "/register.html" || window.location.pathname === "/login.html"){
                 document.location.href = "index.html";
             }
-            await removeCls([".user-dropdown"], "d-none", true);
-            console.log(JSON.parse(getCookie('user_inf')));
+            removeCls([".user-dropdown"], "d-none", true);
         } else {
-            await removeCls([".login-item", ".register-item"], "d-none", false);
+            removeCls([".login-item", ".register-item"], "d-none", false);
         }
     });
 
@@ -21,7 +22,7 @@ $(document).ready(function () {
     $("#form-register").submit(function (event) {
         event.preventDefault();
         registrarUsuario();
-    });
+    }); 
 
 });
 
