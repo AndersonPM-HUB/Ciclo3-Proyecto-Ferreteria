@@ -34,8 +34,7 @@ async function removeCls(items, prop, user){
             await $(".username-nav").html(JSON.parse(getCookie('user_inf')).usuario);
         }catch(TypeError){
             console.log("Error al cargar datos de usuario...")
-        }
-        
+        }     
     }
 }
 
@@ -62,6 +61,14 @@ function autenticarUsuario() {
             }
         }
     });
+}
+
+function cerrarSesion(){
+    if(getCookie('state')){
+        eraseCookie('state');
+        eraseCookie('user_inf');
+        document.location.href = "login.html";
+    }
 }
 
 function registrarUsuario() {
