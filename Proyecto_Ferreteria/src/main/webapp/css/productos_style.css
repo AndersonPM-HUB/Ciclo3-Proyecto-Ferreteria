@@ -10,6 +10,13 @@
     height: 40%; 
 }
 
+.bg-light-red{
+    background-color: #ff4d4d;
+}
+
+.white{
+    color: white;
+}
 .col-md-9{
     display: grid;
     grid-template-columns: repeat(3,1fr);
