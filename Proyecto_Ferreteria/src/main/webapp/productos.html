@@ -1,100 +1,93 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>Productos | FerreProyectos</title>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <!-- Fonts -->
-        <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
-        
-        <script src="js/index.js"></script>
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/productos_style.css" rel="stylesheet">
-    </head>
-    <body>
-        <!<!-- nav bar -->
-        <header>
-            <div class="container-fluid p-2 text-light text-left">
-                <div class="navbar">
-                    <h1 class="white"> FerreProyectos</h1>
-                    <ul class="nav justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html">Ingresar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="register.html">Registrarse</a>
-                        </li>
-                        <a><img src="./img/shoppingcart.png"  height="25" href="#"></a>
-                    </ul>
-                </div>
-            </div>
-    </header>
+<head>
+    <title>Productos | FerreProyectos</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!<!-- Seccion categorias -->
-    <div class="container" id="categorias">
-        <form class="form-inline justify-content-end">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <div class="row">
-            <div class="col-md-3 bg-light rounded-lg " id="seccion-categorias">
-                <nav id="navbar" class="nav-menu navbar ">
-                    <h3>Categorias</h3>
-                    <ul>
-                        <li><a href="#" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Industria</span></a></li><br>
-                        <li><a href="#" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Construccion-madera</span></a></li><br>
-                        <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Sellantes</span></a></li><br>
-                        <li><a href="#" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Pinturas y Complementos</span></a></li><br>
-                        <li><a href="#" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Equipos de ttrabajo</span></a></li><br>
-                        <li><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Moviliario -jardin</span></a></li><br>
-                    </ul>
-                </nav>
-            </div>
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
-            <div class="col-md-9">
-                <div class="card">
-                    <img src="https://pbs.twimg.com/profile_images/696150090755534848/WKjIj9Bc_400x400.jpg" class="card-img-top" alt="martillo">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <script src="js/index.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/navbar.js"></script>
+    <link href="css/productos_style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!<!-- nav bar -->
+        <header id="ferr-navbar"></header>
+
+        <!<!-- Seccion categorias -->
+            <div class="container" id="categorias">
+                <form class="form-inline justify-content-end">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <div class="row">
+                    <div class="col-md-3 bg-light rounded-lg " id="seccion-categorias">
+                        <nav id="navbar" class="nav-menu navbar ">
+                            <h3>Categorias</h3>
+                            <ul>
+                                <li><a href="#" class="nav-link scrollto active"><i class="bx bx-home"></i>
+                                        <span>Industria</span></a></li><br>
+                                <li><a href="#" class="nav-link scrollto"><i class="bx bx-user"></i>
+                                        <span>Construccion-madera</span></a></li><br>
+                                <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i>
+                                        <span>Sellantes</span></a></li><br>
+                                <li><a href="#" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                                        <span>Pinturas y Complementos</span></a></li><br>
+                                <li><a href="#" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Equipos de
+                                            ttrabajo</span></a></li><br>
+                                <li><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i>
+                                        <span>Moviliario -jardin</span></a></li><br>
+                            </ul>
+                        </nav>
                     </div>
-                </div>
-                
-                    <div class="card">
-                    <img src="https://pbs.twimg.com/profile_images/696150090755534848/WKjIj9Bc_400x400.jpg" class="card-img-top" alt="martillo">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+
+                    <div class="col-md-9">
+                        <div class="card">
+                            <img src="https://pbs.twimg.com/profile_images/696150090755534848/WKjIj9Bc_400x400.jpg"
+                                class="card-img-top" alt="martillo">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <img src="https://pbs.twimg.com/profile_images/696150090755534848/WKjIj9Bc_400x400.jpg"
+                                class="card-img-top" alt="martillo">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
-        </div>
-    </div>
 
 
 
 
 
 
-
-    </body>
+</body>
 
 
 </html>
