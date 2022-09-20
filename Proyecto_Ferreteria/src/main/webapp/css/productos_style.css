@@ -6,6 +6,10 @@
 
 }
 
+.red{
+    color: #dd191d;
+}
+
 .card .card-img-top{
     height: 40%; 
 }
