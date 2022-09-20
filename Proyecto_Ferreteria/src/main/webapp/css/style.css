@@ -22,6 +22,13 @@ body {
     position: fixed;
     right:50px;
 }
+.imagenes-laterales2{
+    width:800px;
+    height:200px;
+    position: fixed;
+    right:50px;
+    margin:50px;
+}
 
 .tools-img{
     width:200px;
