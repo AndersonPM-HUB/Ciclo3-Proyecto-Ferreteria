@@ -1,17 +1,26 @@
-$(document).ready(function(){
-    $(window).ready(function(){
-        $("#ferr-navbar").load("component/navbar.html");
-    });
-
-    $(window).on('load', function(){
-        if (getCookie('state')){
-            if(window.location.pathname === "/register.html" || window.location.pathname === "/login.html"){
+$(document).ready(function () {
+    $(window).ready(function () {
+        if (getCookie('state')) {
+            $("#ferr-navbar").load("component/navbar-user.html");
+            let path = window.location.pathname;
+            path = path.split('/');
+            path = path[path.length - 1];
+            if (path === "register.html" || path === "login.html") {
                 document.location.href = "index.html";
             }
-            removeCls([".user-dropdown"], "d-none", true);
         } else {
-            removeCls([".login-item", ".register-item"], "d-none", false);
+            $("#ferr-navbar").load("component/navbar-login.html");
         }
+    });
+
+    $(window).on('load', function () {
+        if(getCookie('state')){
+            try {
+                $(".username-nav").html(JSON.parse(getCookie('user_inf')).usuario);
+            } catch (TypeError) {
+                console.log("Error al cargar datos de usuario...")
+            }
+        }  
     });
 
     $("#form-login").submit(function (event) {
@@ -22,22 +31,9 @@ $(document).ready(function(){
     $("#form-register").submit(function (event) {
         event.preventDefault();
         registrarUsuario();
-    }); 
+    });
 
 });
-
-async function removeCls(items, prop, user){
-    await items.forEach(function(item){
-        $(item).removeClass(prop);
-    });
-    if (user){
-        try{
-            await $(".username-nav").html(JSON.parse(getCookie('user_inf')).usuario);
-        }catch(TypeError){
-            console.log("Error al cargar datos de usuario...")
-        }     
-    }
-}
 
 function autenticarUsuario() {
     let usuario = $("#usuario").val();
@@ -55,7 +51,7 @@ function autenticarUsuario() {
             if (parsedResult != false) {
                 $("#login-error").addClass("d-none");
                 setCookie('state', true, '1');
-                setCookie('user_inf', JSON.stringify(parsedResult), '1');                
+                setCookie('user_inf', JSON.stringify(parsedResult), '1');
                 document.location.href = "index.html";
             } else {
                 $("#login-error").removeClass("d-none");
@@ -64,8 +60,8 @@ function autenticarUsuario() {
     });
 }
 
-function cerrarSesion(){
-    if(getCookie('state')){
+function cerrarSesion() {
+    if (getCookie('state')) {
         eraseCookie('state');
         eraseCookie('user_inf');
         document.location.href = "login.html";
@@ -111,20 +107,20 @@ function registrarUsuario() {
 }
 
 // Autor Vignesh Pichamani StackOverFlow
-function setCookie(key, value, expiry){
+function setCookie(key, value, expiry) {
     var expires = new Date();
     expires.setTime(expires.getTime() + (expiry * 24 * 60 * 60 * 1000));
     document.cookie = key + '=' + value + ';path=/' + ';expires=' + expires.toUTCString();
 }
 
 // Autor Vignesh Pichamani StackOverFlow
-function getCookie(key){
+function getCookie(key) {
     var keyValue = document.cookie.match('(^|;) ?' + key + '=([^;]*)(;|$)');
     return keyValue ? keyValue[2] : null;
 }
 
 // Autor Vignesh Pichamani StackOverFlow
-function eraseCookie(key){
+function eraseCookie(key) {
     var keyValue = getCookie(key);
     setCookie(key, keyValue, '-1');
 }
