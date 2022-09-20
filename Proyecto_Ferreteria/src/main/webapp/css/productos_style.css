@@ -1,3 +1,13 @@
+body {
+    font-family: 'Nunito';
+    font-size: 18px;
+    background-image: url("../img/bg-productos.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
 .card{
     display: flex;
     width: 15rem;
@@ -29,7 +39,7 @@
 }
 
 .container{
-    margin: 20px;
+    margin: 50px;
 }
 
 #seccion-categorias{
