@@ -1,0 +1,48 @@
+body {
+    font-family: 'Nunito';
+    font-size: 18px;
+    background-image: url("../img/bg-productos.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.card{
+    display: flex;
+    width: 15rem;
+    margin: 20px;
+    border:solid black; 
+
+}
+
+.red{
+    color: #dd191d;
+}
+
+.card .card-img-top{
+    height: 40%; 
+}
+
+.bg-light-red{
+    background-color: #ff4d4d;
+}
+
+.white{
+    color: white;
+}
+.col-md-9{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background-color: white;
+    
+}
+
+.container{
+    margin: 50px;
+}
+
+#seccion-categorias{
+    border-radius: 10px; 
+    margin-left: 0;
+}
