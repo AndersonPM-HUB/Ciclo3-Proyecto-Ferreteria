@@ -1,13 +1,13 @@
 $(document).ready(function () {
     $(window).ready(function () {
         if (getCookie('state')) {
-            $("#ferr-navbar").load("component/navbar-user.html");
             let path = window.location.pathname;
             path = path.split('/');
             path = path[path.length - 1];
             if (path === "register.html" || path === "login.html") {
-                document.location.href = "index.html";
+                document.location.replace("index.html");
             }
+            $("#ferr-navbar").load("component/navbar-user.html");     
         } else {
             $("#ferr-navbar").load("component/navbar-login.html");
         }
