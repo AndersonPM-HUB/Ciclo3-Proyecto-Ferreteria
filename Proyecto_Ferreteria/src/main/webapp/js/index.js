@@ -7,27 +7,27 @@ $(document).ready(function () {
             if (path === "register.html" || path === "login.html") {
                 document.location.replace("index.html");
             }
-            $("#ferr-navbar").load("component/navbar-user.html");     
+            $("#ferr-navbar").load("component/navbar-user.html");
         } else {
             $("#ferr-navbar").load("component/navbar-login.html");
         }
     });
 
     $(window).on('load', function () {
-        if(getCookie('state')){
+        if (getCookie('state')) {
             try {
                 $(".username-nav").html(JSON.parse(getCookie('user_inf')).usuario);
             } catch (TypeError) {
                 console.log("Error al cargar datos de usuario...")
             }
-        }  
-        
-         let path = window.location.pathname;
-         path = path.split('/');
-         path = path[path.length - 1];
-         if (path === "productos.html") {
-               getProductos();
-            }
+        }
+
+        let path = window.location.pathname;
+        path = path.split('/');
+        path = path[path.length - 1];
+        if (path === "productos.html") {
+            getProductos();
+        }
     });
 
     $("#form-login").submit(function (event) {
@@ -40,59 +40,65 @@ $(document).ready(function () {
         registrarUsuario();
     });
 
-    
-    
+
+
 });
 
- function getProductos() {
+function getProductos() {
+    $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletProductosListar",
+        data: $.param,
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            mostrarProductos(parsedResult);
 
-        $.ajax({
-            type: "GET",
-            dataType: "html",
-            url: "./ServletProductosListar",
-            data: $.param,
-            success: function (result) {
-                let parsedResult = JSON.parse(result);
-                console.log("parece que si");
-                mostrarProductos(parsedResult);
-
-            }
-        });
-    }
+        }
+    });
+}
 
 
+function mostrarProductos(productos) {
+    let contenido = "";
+    let contador = 0;
+    let cards = 0;
+    $.each(productos, function (index, producto) {
+        console.log(producto);
+        productos = JSON.parse(producto);   
+        
+        if (contador === 0 || contador % 3 === 0) {
+            cards = 0
+            contenido += '<div class="row justify-content-center">';
+        }
 
-    function mostrarProductos(productos) {
-
-        let contenido = "";
-        let contador =0;
-        $.each(productos, function (index, producto) {
-            console.log(producto);
-            productos = JSON.parse(producto);
-
-            if(contador %3 ===0 || contador ===0){
-                contenido += '<div class="row>';
-            }
-            
-            
-            contenido += '<div class=" col-md-4 card m-2" style="width: 18rem;>' +
+      
+        contenido += '<div class="card">' +
+                '<div class="card-header">' +
                     '<img src="" class="card-img-top" alt="">' +
-                    '<div class="card-body">' +
+                '</div>' +
+                '<div class="card-body">' +
                     '<h5 class="card-title">' + productos.nombre + '</h5>' +
-                    '<p class="card-text">' + productos.descripcion + '</p></br>' +
-                    '<span>' + productos.precio + '</span>' +
-                    '<span>' + productos.cantidad+ '</span>' +
-                    '<a href="#" class="btn btn-primary"> Go somewhere</a>'+
-                    '</div></div>';
-            
-            if(contador %3 ===0 || contador ===0){
-                contenido += '</div>';
-            }
-            contador +=1; 
-        });
-        $("#tarjetas-productos").html(contenido);
-    }
-    
+                    '<p class="card-text">' + productos.descripcion + '</p>' +
+                    '<p class="card-text">' + productos.precioUnidad + '</p>' +
+                    '<p class="card-text">' + productos.cantidad + '</p>' +
+                '</div>' +
+                '<div class="card-footer text-center text-muted">' +
+                    '<a href="#" class="btn btn-danger"> Go somewhere</a>' +
+                '</div>' +
+                '</div>';
+        
+        cards += 1
+        if (cards === 3) {
+            contenido += '</div>';
+        }
+        
+        
+        contador += 1;
+    });
+    $("#tarjetas-productos").html(contenido);
+}
+
 function autenticarUsuario() {
     let usuario = $("#usuario").val();
     let contrasena = $("#contrasena").val();

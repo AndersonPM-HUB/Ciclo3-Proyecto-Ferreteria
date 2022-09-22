@@ -12,8 +12,6 @@ body {
     display: flex;
     width: 15rem;
     margin: 20px;
-    border:solid black; 
-
 }
 
 .red{
@@ -30,11 +28,6 @@ body {
 
 .white{
     color: white;
-}
-
-
-.container{
-    margin: 50px;
 }
 
 #seccion-categorias{
