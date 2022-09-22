@@ -31,12 +31,7 @@ body {
 .white{
     color: white;
 }
-.col-md-9{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    background-color: white;
-    
-}
+
 
 .container{
     margin: 50px;
