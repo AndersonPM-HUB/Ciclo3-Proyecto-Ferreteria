@@ -1,16 +1,34 @@
 $(document).ready(function () {
+    
+    let path = window.location.pathname;
+    path = path.split('/');
+    path = path[path.length - 1];
+
     $(window).ready(function () {
         if (getCookie('state')) {
-            let path = window.location.pathname;
-            path = path.split('/');
-            path = path[path.length - 1];
-            if (path === "register.html" || path === "login.html") {
-                document.location.replace("index.html");
+            if(JSON.parse(getCookie('user_inf')).usuario === "admin"){
+                $("#ferr-navbar").load("component/navbar-admin.html");
+            }else{
+                $("#ferr-navbar").load("component/navbar-user.html");
             }
-            $("#ferr-navbar").load("component/navbar-user.html");
+            
+            if(path === "register.html" || path === "login.html") {
+                document.location.replace("index.html");  
+            }
         } else {
             $("#ferr-navbar").load("component/navbar-login.html");
         }
+        
+        try{
+            if(JSON.parse(getCookie('user_inf')).usuario !== "admin" && path === "admin.html"){
+              document.location.replace("index.html");
+            }  
+        }catch(Excepction){
+            if(path === 'admin.html'){
+                document.location.replace("index.html");
+            }
+        }
+        
     });
 
     $(document).on('load', function () {
@@ -21,20 +39,10 @@ $(document).ready(function () {
                 console.log("Error al cargar datos de usuario...");
             }
         }
-
-        
-    });
-
-    $(window).ready( function () {
-        let path = window.location.pathname;
-        path = path.split('/');
-        path = path[path.length - 1];
         if (path === "productos.html") {
-            getProductos();
-           
+            getProductos(path);
         }
-    }
-    );
+    });
 
     $("#form-login").submit(function (event) {
         event.preventDefault();
@@ -46,11 +54,24 @@ $(document).ready(function () {
         registrarUsuario();
     });
 
+    $('#adm-producto').on('click', function(event){
+        event.preventDefault();
+        $("#admin-title").html("Lista de productos");
+        $("#admin-form").load("component/admin-listar-producto.html");
+        getProductos(path);
+    });
 
+    $('#adm-form').ready(function(){
+        $('#btn-crear-producto').on('click', function(event){
+            event.preventDefault();
+            $("#admin-title").html("Crear producto");
+            $("#admin-form").load("component/admin-crear-producto.html");
+        });
+    });
 
 });
 
-function getProductos() {
+function getProductos(path) {
     $.ajax({
         type: "GET",
         dataType: "html",
@@ -58,7 +79,13 @@ function getProductos() {
         data: $.param,
         success: function (result) {
             let parsedResult = JSON.parse(result);
-            mostrarProductos(parsedResult);
+            
+            if(path === "productos.html"){
+                mostrarProductos(parsedResult);
+            }
+            if(path === "admin.html"){
+                listarProductos(parsedResult);
+            }
         }
     });
 }
@@ -95,12 +122,33 @@ function mostrarProductos(productos) {
         if (cards === 3) {
             contenido += '</div>';
         }
-
          
         contador += 1;
     });
     contenido += '<script src="js/paginacion.js"></script>' ; 
     $("#tarjetas-productos").html(contenido);
+}
+
+
+function listarProductos(productos) {
+    let contenido = "";
+    let contador = 1;
+    $.each(productos, function (index, producto) {
+        console.log(producto);
+        productos = JSON.parse(producto);   
+        
+        contenido += '<tr>' +
+        '<th scope="row">' + contador + '</th>' +
+        '<td>' + productos.nombre + '</td>' +
+        '<td>' + productos.descripcion + '</td>' +
+        '<td>' + productos.cantidad + '</td>' +
+        '<td>' + productos.precioUnidad + '</td>' +
+        '<td><a id="editar-producto" class="btn btn-outline-warning btn-sm">Editar</a></td>' +
+        '<td><a id="borrar-producto" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' +
+        '</tr>';
+        contador += 1;
+    });
+    $("#admin-lista-productos").html(contenido);
 }
 
 function autenticarUsuario() {

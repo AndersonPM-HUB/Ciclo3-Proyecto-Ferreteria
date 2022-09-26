@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+    <div class="card sizeDiv rounded-0">
+        <div class="card-body bg-transparent">
+            <form id="form-crear-producto">
+                <h4 class="text-left pb-3 red mb-3">Productos</h4> 
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-light-red white border-span">Nombre</span>
+                    <input type="text" class="form-control bg-light-gray border-input" id="input-nombre-producto"
+                        placeholder="Ingresa el nombre del producto" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-light-red white border-span">Cantidad</span>
+                    <input type="number" class="form-control bg-light-gray border-input" id="input-cantidad-producto"
+                        placeholder="Ingresa la cantidad del producto" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-light-red white border-span">Descripción</span>
+                    <input type="text" class="form-control bg-light-gray border-input" id="input-descripcion-producto"
+                        placeholder="Ingresa la descripción del producto" required>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text bg-light-red white border-span">Precio</span>
+                    <input type="number" class="form-control bg-light-gray border-input" id="input-precio-producto"
+                        placeholder="Ingresa el precio del producto" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text bg-light-red white border-span" for="list-categoria">Categoria</label>
+                    </div>
+                    <select class="custom-select bg-light-gray border-input" id="list-categoria">
+                      <option selected>Selecciona una categoria...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                <span class="bg-light-red white border-span p-1 px-4">Imagen</span>
+                  <input style="font-size: 1.1rem; color: rgba(0, 0, 0, 0.527);" type="file" class="bg-light-gray pr-5" id="input-producto-imagen">
+                </div>
+                </br>
+                <div class="container">
+                    <div class="col-12 text-center">
+                        <input type="submit" class="btn bg-light-gray border-input px-4" id="crear-producto-btn"
+                            value="Crear producto" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
