@@ -30,8 +30,8 @@ $(document).ready(function () {
         }
         
     });
-
-    $(document).on('load', function () {
+    
+    $(window).ready( function () {
         if (getCookie('state')) {
             try {
                 $(".username-nav").html(JSON.parse(getCookie('user_inf')).usuario);
@@ -39,10 +39,13 @@ $(document).ready(function () {
                 console.log("Error al cargar datos de usuario...");
             }
         }
+
         if (path === "productos.html") {
             getProductos(path);
         }
     });
+
+    
 
     $("#form-login").submit(function (event) {
         event.preventDefault();
@@ -54,11 +57,18 @@ $(document).ready(function () {
         registrarUsuario();
     });
 
+
     $('#adm-producto').on('click', function(event){
         event.preventDefault();
         $("#admin-title").html("Lista de productos");
         $("#admin-form").load("component/admin-listar-producto.html");
         getProductos(path);
+    });
+    
+    $("#busqueda").submit(function (event) {
+        event.preventDefault();
+        buscarProducto();
+
     });
 
     $('#adm-form').ready(function(){
@@ -71,8 +81,44 @@ $(document).ready(function () {
 
 });
 
+
+
 function getProductos(path) {
-    $.ajax({
+
+    let queryString = window.location.search;
+    let busqueda;
+    let producto;
+    try {
+        queryString = queryString.split('?');
+        queryString = queryString[1].split('=');
+        busqueda = queryString[0];
+        producto = queryString[1];
+
+    } catch (e) {
+        busqueda = "";
+        producto = "";
+    }
+
+
+    if (busqueda === "product") {
+        console.log("hola ");
+        $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: "./ServletProductoBuscar",
+            data: $.param({
+                product: producto
+            }),
+            success: function (result) {
+                let parsedResult = JSON.parse(result);
+                console.log(result);
+                
+                
+                mostrarProductos(parsedResult);
+            }
+        });
+    } else {
+       $.ajax({
         type: "GET",
         dataType: "html",
         url: "./ServletProductosListar",
@@ -87,8 +133,15 @@ function getProductos(path) {
                 listarProductos(parsedResult);
             }
         }
+            
+              
+
+       
     });
-}
+
+    }
+    }
+    
 
 function mostrarProductos(productos) {
     let contenido = "";
@@ -122,10 +175,10 @@ function mostrarProductos(productos) {
         if (cards === 3) {
             contenido += '</div>';
         }
-         
+
         contador += 1;
     });
-    contenido += '<script src="js/paginacion.js"></script>' ; 
+    contenido += '<script src="js/paginacion.js"></script>';
     $("#tarjetas-productos").html(contenido);
 }
 
@@ -241,5 +294,10 @@ function eraseCookie(key) {
     setCookie(key, keyValue, '-1');
 }
 
+function buscarProducto() {
 
+    let producto = $("#product").val();
+    document.location.href = "productos.html?product=" + producto;
+
+}
 
