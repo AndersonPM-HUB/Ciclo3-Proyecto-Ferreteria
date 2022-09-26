@@ -40,8 +40,9 @@ public class OperacionesDB {
             int cantidad = rs.getInt("cantidad");
             String descripcion = rs.getString("descripcion");
             Double precioUnidad = rs.getDouble("precio_unidad");
+            String imagen = rs.getString("imagen");
             
-            Producto pr = new Producto(nombre, cantidad, descripcion, precioUnidad);
+            Producto pr = new Producto(nombre, cantidad, descripcion, precioUnidad, imagen);
             System.out.println(pr.toString());
         }
         st.executeQuery(sql);

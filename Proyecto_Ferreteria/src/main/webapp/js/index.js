@@ -7,21 +7,34 @@ $(document).ready(function () {
             if (path === "register.html" || path === "login.html") {
                 document.location.replace("index.html");
             }
-            $("#ferr-navbar").load("component/navbar-user.html");     
+            $("#ferr-navbar").load("component/navbar-user.html");
         } else {
             $("#ferr-navbar").load("component/navbar-login.html");
         }
     });
 
-    $(window).on('load', function () {
-        if(getCookie('state')){
+    $(document).on('load', function () {
+        if (getCookie('state')) {
             try {
                 $(".username-nav").html(JSON.parse(getCookie('user_inf')).usuario);
             } catch (TypeError) {
-                console.log("Error al cargar datos de usuario...")
+                console.log("Error al cargar datos de usuario...");
             }
-        }  
+        }
+
+        
     });
+
+    $(window).ready( function () {
+        let path = window.location.pathname;
+        path = path.split('/');
+        path = path[path.length - 1];
+        if (path === "productos.html") {
+            getProductos();
+           
+        }
+    }
+    );
 
     $("#form-login").submit(function (event) {
         event.preventDefault();
@@ -33,7 +46,62 @@ $(document).ready(function () {
         registrarUsuario();
     });
 
+
+
 });
+
+function getProductos() {
+    $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletProductosListar",
+        data: $.param,
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            mostrarProductos(parsedResult);
+        }
+    });
+}
+
+function mostrarProductos(productos) {
+    let contenido = "";
+    let contador = 0;
+    let cards = 0;
+    $.each(productos, function (index, producto) {
+
+        productos = JSON.parse(producto);
+
+        if (contador === 0 || contador % 3 === 0) {
+            cards = 0
+            contenido += '<div class="row justify-content-center">';
+        }
+
+        contenido += '<div class="card">' +
+                '<div class="card-header">' +
+                '<h5 class="card-title">' + productos.nombre + '</h5>' +
+                '</div>' +
+                '<div class="card-body">' +
+                '<img src="' + productos.imagen + '" class="card-img-top" alt="">' +
+                '<p class="card-text">' + productos.descripcion + '</p>' +
+                '<p class="card-text">Precio Unidad:' + productos.precioUnidad + '</p>' +
+                '<p class="card-text">Stock :' + productos.cantidad + '</p>' +
+                '<a href="#" class="btn btn-danger" >Añadir al carrito</a>' +
+                '</div>' +
+                '<div class="card-footer text-center text-muted">' +
+                '</div>' +
+                '</div> ';
+
+        cards += 1
+        if (cards === 3) {
+            contenido += '</div>';
+        }
+
+         
+        contador += 1;
+    });
+    contenido += '<script src="js/paginacion.js"></script>' ; 
+    $("#tarjetas-productos").html(contenido);
+}
 
 function autenticarUsuario() {
     let usuario = $("#usuario").val();
@@ -124,3 +192,6 @@ function eraseCookie(key) {
     var keyValue = getCookie(key);
     setCookie(key, keyValue, '-1');
 }
+
+
+

@@ -2,30 +2,29 @@
 
 <html>
 
-<head>
-    <title>Productos | FerreProyectos</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/productos_style.css" rel="stylesheet">
-</head>
+    <head>
+        <title>Productos | FerreProyectos</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+              integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/productos_style.css" rel="stylesheet">
+    </head>
 
-<body>
-    <!<!-- nav bar -->
+    <body>
+        <!<!-- nav bar -->
         <header id="ferr-navbar"></header>
-
         <!<!-- Seccion categorias -->
-            <div class="container" id="categorias">
-
-                <div class="row">
-                    <div class="col-md-4 bg-light rounded-lg justify-content-center " id="seccion-categorias">
+        <div class="container-fluid">
+           <div class="row justify-content-center">
+                <div class="container-fluid col-3"  id="categorias">
+                    <div class="bg-light rounded-lg" id="seccion-categorias">
                         <nav id="navbar" class="nav-menu navbar justify-content-center ">
                             <h3>Categorias</h3>
                             <ul>
@@ -37,64 +36,43 @@
                                         <span>Sellantes</span></a></li><br>
                                 <li><a href="#" class="nav-link scrollto"><i class="bx bx-book-content"></i>
                                         <span>Pinturas y Complementos</span></a></li><br>
-                                <li><a href="#" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Equipos de
+                                <li><a href="#" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Equipos
+                                            de
                                             trabajo</span></a></li><br>
                                 <li><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i>
                                         <span>Mobiliario -jardín</span></a></li><br>
+
                             </ul>
-                        </nav>
-                    </div>
 
-                    <div class="imagenes-laterales2">
-                        <form class="form-inline justify-content-end">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                        <div class="col-md-9">
-                            <div class="card">
-                                <img src="https://pbs.twimg.com/profile_images/696150090755534848/WKjIj9Bc_400x400.jpg"
-                                    class="card-img-top" alt="martillo">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <img src="https://pbs.twimg.com/profile_images/696150090755534848/WKjIj9Bc_400x400.jpg"
-                                    class="card-img-top" alt="martillo">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <img src="https://pbs.twimg.com/profile_images/696150090755534848/WKjIj9Bc_400x400.jpg"
-                                    class="card-img-top" alt="martillo">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up
-                                        the
-                                        bulk of the card's content.</p>
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
+                
+                <div class="container-fluid col-9 justify-content-center">
+                    <form class="form-inline justify-content-end mx-5 px-4">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-danger my-sm-0" type="submit">Search</button>
+                    </form>
+
+
+                    <div class="ml-5" id="tarjetas-productos">
+                        
+                    </div>
+
+                    <div id="pagination-model">
+                        <ul class="pagination">
+                            
+                        </ul>
+                    </div>
+                   
+                </div>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <script src="js/index.js"></script>
-</body>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="js/index.js"></script>
+    </body>
 
 
 </html>

@@ -12,8 +12,7 @@ body {
     display: flex;
     width: 15rem;
     margin: 20px;
-    border:solid black; 
-
+    box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
 }
 
 .red{
@@ -31,18 +30,17 @@ body {
 .white{
     color: white;
 }
-.col-md-9{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    background-color: white;
-    
-}
-
-.container{
-    margin: 50px;
-}
 
 #seccion-categorias{
     border-radius: 10px; 
     margin-left: 0;
+}
+
+#pagination-model{
+  margin-left: 50%; 
+  text-align: center;
+}
+
+.page-item.active .page-link{
+    background-color: #ff4d4d; 
 }
