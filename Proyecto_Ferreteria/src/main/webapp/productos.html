@@ -2,25 +2,23 @@
 
 <html>
 
-<head>
-    <title>Productos | FerreProyectos</title>
-    <meta charset="UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/productos_style.css" rel="stylesheet">
+    <head>
+        <title>Productos | FerreProyectos</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+              integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/productos_style.css" rel="stylesheet">
+    </head>
 
-    <script src="js/productos.js"></script>
-</head>
-
-<body>
-    <!<!-- nav bar -->
+    <body>
+        <!<!-- nav bar -->
         <header id="ferr-navbar"></header>
         <!<!-- Seccion categorias -->
             <div class="container-fluid">
@@ -46,20 +44,33 @@
                                 </ul>
                         </div>
                     </div>
-                    <div class="container-fluid col-9">
-                        <form class="form-inline justify-content-end mx-5 px-4">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-danger my-sm-0" type="submit">Search</button>
-                        </form>
-                        <div id="tarjetas-productos"></div>
+                </div>
+                
+                <div class="container-fluid col-9 justify-content-center">
+                    <form class="form-inline justify-content-end mx-5 px-4">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-danger my-sm-0" type="submit">Search</button>
+                    </form>
+
+
+                    <div class="ml-5" id="tarjetas-productos">
+                        
                     </div>
+
+                    <div id="pagination-model">
+                        <ul class="pagination">
+                            
+                        </ul>
+                    </div>
+                   
                 </div>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <script src="js/index.js"></script>
-</body>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="js/index.js"></script>
+    </body>
 
 
 </html>

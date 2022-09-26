@@ -34,7 +34,7 @@ public String listarProductos() {
                 double precio = rs.getDouble("precio_unidad"); 
                 String imagen = rs.getString("imagen");
                 
-                Producto p = new Producto(nombre, cantidad, descripcion, precio); 
+                Producto p = new Producto(nombre, cantidad, descripcion, precio, imagen); 
                 
                 System.out.println(p);
                 
