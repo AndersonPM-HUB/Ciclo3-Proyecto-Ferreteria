@@ -1,12 +1,12 @@
-$(window).ready( function () {
-        let path = window.location.pathname;
-        path = path.split('/');
-        path = path[path.length - 1];
-        if (path === "productos.html") {
-            paginationModel();
-        }
+$(window).ready(function () {
+    let path = window.location.pathname;
+    path = path.split('/');
+    path = path[path.length - 1];
+    if (path === "productos.html") {
+        paginationModel();
     }
-    );
+}
+);
 
 
 function paginationModel() {
@@ -50,7 +50,7 @@ function paginationModel() {
         var currentPage = $(".pagination li.active").index(); // Identify the current active page
         // Check to make sure that navigating to the next page will not exceed the total number of pages
         if (currentPage === totalPages) {
-            $(".pagination li").addClass('disable'); 
+            $(".pagination li").addClass('disable');
             return false; // Return false (i.e., cannot navigate any further, since it would exceed the maximum number of pages)
         } else {
             currentPage++; // Increment the page by one

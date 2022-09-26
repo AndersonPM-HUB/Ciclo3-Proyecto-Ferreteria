@@ -12,5 +12,5 @@ public interface IProductosController {
     
     public String listarProductos (); 
     
-    
+    public String buscarProducto(String producto);
 }
