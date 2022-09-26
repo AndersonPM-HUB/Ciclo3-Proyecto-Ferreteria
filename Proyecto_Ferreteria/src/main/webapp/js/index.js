@@ -13,22 +13,28 @@ $(document).ready(function () {
         }
     });
 
-    $(window).on('load', function () {
+    $(document).on('load', function () {
         if (getCookie('state')) {
             try {
                 $(".username-nav").html(JSON.parse(getCookie('user_inf')).usuario);
             } catch (TypeError) {
-                console.log("Error al cargar datos de usuario...")
+                console.log("Error al cargar datos de usuario...");
             }
         }
 
+        
+    });
+
+    $(window).ready( function () {
         let path = window.location.pathname;
         path = path.split('/');
         path = path[path.length - 1];
         if (path === "productos.html") {
             getProductos();
+           
         }
-    });
+    }
+    );
 
     $("#form-login").submit(function (event) {
         event.preventDefault();
@@ -53,49 +59,47 @@ function getProductos() {
         success: function (result) {
             let parsedResult = JSON.parse(result);
             mostrarProductos(parsedResult);
-
         }
     });
 }
-
 
 function mostrarProductos(productos) {
     let contenido = "";
     let contador = 0;
     let cards = 0;
     $.each(productos, function (index, producto) {
-        console.log(producto);
-        productos = JSON.parse(producto);   
-        
+
+        productos = JSON.parse(producto);
+
         if (contador === 0 || contador % 3 === 0) {
             cards = 0
             contenido += '<div class="row justify-content-center">';
         }
 
-      
         contenido += '<div class="card">' +
                 '<div class="card-header">' +
-                    '<img src="" class="card-img-top" alt="">' +
+                '<h5 class="card-title">' + productos.nombre + '</h5>' +
                 '</div>' +
                 '<div class="card-body">' +
-                    '<h5 class="card-title">' + productos.nombre + '</h5>' +
-                    '<p class="card-text">' + productos.descripcion + '</p>' +
-                    '<p class="card-text">' + productos.precioUnidad + '</p>' +
-                    '<p class="card-text">' + productos.cantidad + '</p>' +
+                '<img src="' + productos.imagen + '" class="card-img-top" alt="">' +
+                '<p class="card-text">' + productos.descripcion + '</p>' +
+                '<p class="card-text">Precio Unidad:' + productos.precioUnidad + '</p>' +
+                '<p class="card-text">Stock :' + productos.cantidad + '</p>' +
+                '<a href="#" class="btn btn-danger" >Añadir al carrito</a>' +
                 '</div>' +
                 '<div class="card-footer text-center text-muted">' +
-                    '<a href="#" class="btn btn-danger"> Go somewhere</a>' +
                 '</div>' +
-                '</div>';
-        
+                '</div> ';
+
         cards += 1
         if (cards === 3) {
             contenido += '</div>';
         }
-        
-        
+
+         
         contador += 1;
     });
+    contenido += '<script src="js/paginacion.js"></script>' ; 
     $("#tarjetas-productos").html(contenido);
 }
 
@@ -188,3 +192,6 @@ function eraseCookie(key) {
     var keyValue = getCookie(key);
     setCookie(key, keyValue, '-1');
 }
+
+
+
