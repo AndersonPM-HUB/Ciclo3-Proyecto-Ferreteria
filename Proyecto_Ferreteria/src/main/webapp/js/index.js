@@ -32,7 +32,7 @@ $(document).ready(function () {
         event.preventDefault();
         buscarProducto();
     });
-
+    
     $('#adm-form').ready(function(){
         $('#btn-crear-producto').on('click', function(event){
             event.preventDefault();

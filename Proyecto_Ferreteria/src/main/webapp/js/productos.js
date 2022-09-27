@@ -29,7 +29,6 @@ function getProductos(path) {
                 mostrarProductos(parsedResult);
             }
         });
-
     } else {
         $.ajax({
             type: "GET",
@@ -95,9 +94,7 @@ function listarProductos(productos) {
     let contenido = "";
     let contador = 1;
     $.each(productos, function (index, producto) {
-        console.log(producto);
         productos = JSON.parse(producto);
-
         contenido += '<tr>' +
             '<th scope="row">' + contador + '</th>' +
             '<td>' + productos.nombre + '</td>' +
@@ -115,4 +112,41 @@ function listarProductos(productos) {
 function buscarProducto() {
     let producto = $("#product").val();
     document.location.href = "productos.html?product=" + producto;
+}
+
+function crearProducto(){
+    let nombre = $("#input-nombre-producto").val();
+    let cantidad = $("#input-cantidad-producto").val();
+    let descripcion = $("#input-descripcion-producto").val();
+    let precio = $("#input-precio-producto").val();
+    let categoria = $("#list-categoria").find(":selected").val();
+    let imagen = $("#input-producto-imagen").val().split('\\').pop();
+    
+    $.ajax({
+            type: "GET",
+            dataType: "html",
+            url: "./ServletProductoCrear",
+            data: $.param({
+                nombre: nombre,
+                cantidad: cantidad,
+                descripcion: descripcion,
+                precio: precio,
+                categoria: categoria,
+                imagen: "media/" + imagen
+            }),
+            success: function (result) {
+                let parsedResult = JSON.parse(result);
+                console.log(parsedResult);
+            }
+        });
+}
+
+async function subirImagen(){
+    let formData = new FormData();
+    let imagen = $("#input-producto-imagen");
+    formData.append("imagen", imagen);
+    await fetch('./ServletProductoCrear', {
+        method: "POST",
+        body: formData,
+    });
 }

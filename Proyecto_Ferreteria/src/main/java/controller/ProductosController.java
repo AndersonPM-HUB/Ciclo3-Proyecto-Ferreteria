@@ -1,13 +1,16 @@
 package controller;
 
 import beans.Producto;
-import beans.Usuario;
 import com.google.gson.Gson;
 import connection.DBConnection;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductosController implements IProductosController {
 
@@ -25,17 +28,16 @@ public class ProductosController implements IProductosController {
             Statement st = con.getConnection().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-
+                
+                int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 int cantidad = rs.getInt("cantidad");
                 String descripcion = rs.getString("descripcion");
                 double precio = rs.getDouble("precio_unidad");
                 String imagen = rs.getString("imagen");
 
-                Producto p = new Producto(nombre, cantidad, descripcion, precio, imagen);
-
-                System.out.println(p);
-
+                Producto p = new Producto(id, nombre, cantidad, descripcion, precio, imagen);
+                // System.out.println(p);
                 listaProductos.add(gson.toJson(p));
             }
 
@@ -89,4 +91,33 @@ public class ProductosController implements IProductosController {
         return gson.toJson(listaProductos);
 
     }
+    
+    @Override
+    public String crearProducto(String nombre, Integer cantidad, String descripcion, Double precio,
+            Integer categoria, String imagen) {
+        
+        Gson gson = new Gson();
+        DBConnection con = new DBConnection();
+
+        String sql = "INSERT INTO productos (nombre, cantidad, descripcion, precio_unidad, imagen) VALUES('" + nombre + "', '" + cantidad + "', '" + descripcion
+                + "', '" + precio + "', '" + imagen + "')";
+        System.out.println(sql);        
+
+        try {
+            Statement st = con.getConnection().createStatement();
+            st.executeUpdate(sql);
+
+            Producto producto = new Producto(nombre, cantidad, descripcion, precio, imagen);
+            st.close();
+            return gson.toJson(producto);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            con.desconectar();
+        }
+
+        return "false";
+}
 }

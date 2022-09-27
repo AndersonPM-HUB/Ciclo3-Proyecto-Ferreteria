@@ -9,7 +9,8 @@ package beans;
  * @author edwin
  */
 public class Producto {
-
+    
+    private int id;
     private String nombre;
     private int cantidad;
     private String descripcion;
@@ -22,6 +23,23 @@ public class Producto {
         this.descripcion = descripcion;
         this.precioUnidad = precioUnidad;
         this.imagen = imagen; 
+    }
+    
+    public Producto(int id, String nombre, int cantidad, String descripcion, double precioUnidad, String imagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.descripcion = descripcion;
+        this.precioUnidad = precioUnidad;
+        this.imagen = imagen; 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
