@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-center">
     <div class="card sizeDiv rounded-0">
         <div class="card-body bg-transparent">
-            <form id="form-crear-producto">
+            <form id="form-crear-producto" enctype="multipart/form-data">
                 <h4 class="text-left pb-3 red mb-3">Productos</h4> 
                 <div class="input-group mb-3">
                     <span class="input-group-text bg-light-red white border-span">Nombre</span>
@@ -28,15 +28,12 @@
                       <label class="input-group-text bg-light-red white border-span" for="list-categoria">Categoria</label>
                     </div>
                     <select class="custom-select bg-light-gray border-input" id="list-categoria">
-                      <option selected>Selecciona una categoria...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      
                     </select>
                 </div>
                 <div class="form-group">
                 <span class="bg-light-red white border-span p-1 px-4">Imagen</span>
-                  <input style="font-size: 1.1rem; color: rgba(0, 0, 0, 0.527);" type="file" class="bg-light-gray pr-5" id="input-producto-imagen">
+                  <input style="font-size: 1.1rem; color: rgba(0, 0, 0, 0.527);" type="file" accept=".jpg, .png" class="bg-light-gray pr-5" id="input-producto-imagen">
                 </div>
                 </br>
                 <div class="container">
@@ -49,3 +46,6 @@
         </div>
     </div>
 </div>
+<script src="js/productos.js"></script>
+<script src="js/categorias.js"></script>
+

@@ -20,7 +20,7 @@ public class UsuarioController implements IUsuarioController{
         
         String sql = "";
         try {
-            sql = "SELECT * FROM usuarios WHERE usuario = '" +  user + "' and contrasena = '" + Usuario.encriptarContrasena(contrasena.strip()) + "'";
+            sql = "SELECT * FROM usuarios WHERE usuario = '" +  user + "' or correo = '" + user + "'and contrasena = '" + Usuario.encriptarContrasena(contrasena.strip()) + "'";
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NoSuchAlgorithmException ex) {
@@ -34,7 +34,8 @@ public class UsuarioController implements IUsuarioController{
                 String nombres = rs.getString("nombres");
                 String apellidos = rs.getString("apellidos");
                 String correo = rs.getString("correo");
-                Usuario usuario = new Usuario(user, nombres, apellidos, correo, Usuario.encriptarContrasena(contrasena.strip()));
+                int rol = rs.getInt("rol");
+                Usuario usuario = new Usuario(user, nombres, apellidos, correo, rol, Usuario.encriptarContrasena(contrasena.strip()));
                 return gson.toJson(usuario);
             }
         

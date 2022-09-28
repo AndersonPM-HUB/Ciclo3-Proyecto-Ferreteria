@@ -10,9 +10,19 @@ public class Usuario {
     private String nombres;
     private String apellidos;
     private String correo;
+    private int rol;
     private String contrasena;
 
-    public Usuario(String usuario, String nombres, String apellidos, String correo, String contrasena) {
+    public Usuario(String usuario, String nombres, String apellidos, String correo, int rol, String contrasena) {
+        this.usuario = usuario;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correo = correo;
+        this.rol = rol;
+        this.contrasena = contrasena;
+    }
+    
+       public Usuario(String usuario, String nombres, String apellidos, String correo, String contrasena) {
         this.usuario = usuario;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -52,6 +62,14 @@ public class Usuario {
         this.correo = correo;
     }
 
+    public int getRol(){
+        return rol;
+    }
+
+    public void setRol(int rol){
+        this.rol = rol;
+    }
+    
     public String getContrasena() {
         return contrasena;
     }

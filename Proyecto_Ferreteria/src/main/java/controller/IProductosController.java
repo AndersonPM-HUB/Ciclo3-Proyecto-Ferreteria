@@ -10,7 +10,10 @@ package controller;
  */
 public interface IProductosController {
     
-    public String listarProductos (); 
+    public String listarProductos(); 
     
     public String buscarProducto(String producto);
+    
+    public String crearProducto(String nombre, Integer cantidad, String descripcion, Double precio,
+            Integer categoria, String imagen);
 }
