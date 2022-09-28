@@ -57,7 +57,6 @@ function paginationModel() {
             $(".pagination li").removeClass('active'); // Remove the 'active' class status from the current page
             $("#tarjetas-productos .row").hide(); // Hide all items in the pagination loop
             var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page that was selected
-
             // Loop through total items, selecting a new set of items based on page number
             for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
                 $("#tarjetas-productos .row :eq(" + i + ")").show(); // Show items from the new page that was selected
@@ -69,18 +68,21 @@ function paginationModel() {
 
 // Function to navigate to the previous page when users click on the previous-page id (previous page button)
     $("#previous-page").on("click", function () {
-        var currentPage = $(".pagination li.active").index(); // Identify the current active page
+        var currentPage = $(".pagination li.active").index(); // Identify the current active pag
+      
         // Check to make sure that users is not on page 1 and attempting to navigating to a previous page
         if (currentPage === 1) {
             return false; // Return false (i.e., cannot navigate to a previous page because the current page is page 1)
         } else {
             currentPage--; // Decrement page by one
+
             $(".pagination li").removeClass('active'); // Remove the 'activate' status class from the previous active page number
             $("#tarjetas-productos .row").hide(); // Hide all items in the pagination loop
             var grandTotal = limitPerPage * currentPage; // Get the total number of items up to the page that was selected
 
             // Loop through total items, selecting a new set of items based on page number
             for (var i = grandTotal - limitPerPage; i < grandTotal; i++) {
+                console.log(i);
                 $("#tarjetas-productos .row:eq(" + i + ")").show(); // Show items from the new page that was selected
             }
 

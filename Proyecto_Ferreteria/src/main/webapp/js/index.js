@@ -101,7 +101,7 @@ function getProductos(path) {
 
 
     if (busqueda === "product") {
-        console.log("hola ");
+        
         $.ajax({
             type: "GET",
             dataType: "html",
@@ -111,11 +111,13 @@ function getProductos(path) {
             }),
             success: function (result) {
                 let parsedResult = JSON.parse(result);
-                console.log(result);
-                
                 
                 mostrarProductos(parsedResult);
+            },
+            error: function  (result){
+                $('#mensaje-busqueda').html("<p>No se encotraron busquedas</p>");
             }
+            
         });
     } else {
        $.ajax({
