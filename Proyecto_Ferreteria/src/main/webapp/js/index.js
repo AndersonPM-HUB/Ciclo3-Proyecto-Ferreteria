@@ -49,6 +49,7 @@ function iniciarPagina(path){
             $("#ferr-navbar").load("component/navbar-admin.html");
         }else{
             $("#ferr-navbar").load("component/navbar-user.html");
+
         }
         
         if(path === "register.html" || path === "login.html") {
