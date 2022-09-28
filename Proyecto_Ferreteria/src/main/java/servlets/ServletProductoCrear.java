@@ -20,11 +20,10 @@ import javax.servlet.http.Part;
  * @author edwin
  */
 @WebServlet(name = "ServletProductoCrear", urlPatterns = {"/ServletProductoCrear"})
-
 @MultipartConfig(
-fileSizeThreshold = 1024 * 1024 * 1,
-maxFileSize = 1024 * 1024* 10,
-maxRequestSize = 1024 * 1024 * 100
+    fileSizeThreshold = 1024 * 1024 * 1,
+    maxFileSize = 1024 * 1024* 10,
+    maxRequestSize = 1024 * 1024 * 100
 )
 public class ServletProductoCrear extends HttpServlet {
     
@@ -57,7 +56,13 @@ public class ServletProductoCrear extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        Part filePart = request.getPart("imagen");
+        String fileName = filePart.getSubmittedFileName();
+        String path = request.getServletContext().getRealPath("/media") + "\\" + fileName;
+        for(Part part : request.getParts()){
+            part.write(path);
+        }
+        response.getWriter();
     }
 
 }

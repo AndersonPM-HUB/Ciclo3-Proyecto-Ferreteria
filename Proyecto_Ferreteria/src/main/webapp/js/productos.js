@@ -136,7 +136,10 @@ function crearProducto(){
             }),
             success: function (result) {
                 let parsedResult = JSON.parse(result);
-                console.log(parsedResult);
+                if(parsedResult != false){
+                    subirImagen();
+                    window.location.replace("admin.html");
+                }  
             }
         });
 }
@@ -144,7 +147,7 @@ function crearProducto(){
 async function subirImagen(){
     let formData = new FormData();
     let imagen = $("#input-producto-imagen");
-    formData.append("imagen", imagen);
+    formData.append("imagen", imagen.get(0).files[0]);
     await fetch('./ServletProductoCrear', {
         method: "POST",
         body: formData,

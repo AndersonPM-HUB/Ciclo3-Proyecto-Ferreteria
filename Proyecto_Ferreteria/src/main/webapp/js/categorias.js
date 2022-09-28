@@ -6,7 +6,6 @@ $(document).ready(function (){
     $("#form-crear-producto").submit(function (event){
         event.preventDefault();
         crearProducto();
-        subirImagen();
     });
 });
 

@@ -98,16 +98,24 @@ public class ProductosController implements IProductosController {
         
         Gson gson = new Gson();
         DBConnection con = new DBConnection();
-
+        int idProducto = 0;
         String sql = "INSERT INTO productos (nombre, cantidad, descripcion, precio_unidad, imagen) VALUES('" + nombre + "', '" + cantidad + "', '" + descripcion
                 + "', '" + precio + "', '" + imagen + "')";
-        System.out.println(sql);        
-
+        String sql_two = "SELECT id FROM productos WHERE nombre ='" + nombre + "' AND cantidad='" + cantidad + "' AND descripcion='" + descripcion + "'";
+        System.out.println(sql_two);
         try {
             Statement st = con.getConnection().createStatement();
             st.executeUpdate(sql);
-
-            Producto producto = new Producto(nombre, cantidad, descripcion, precio, imagen);
+            
+            ResultSet rs = st.executeQuery(sql_two);
+            while(rs.next()){
+                idProducto = rs.getInt("id");
+            }
+            
+            sql = "INSERT INTO categorias_productos(id_categoria, id_producto) VALUES('" + categoria + "', '" + idProducto + "')";
+            st.executeUpdate(sql);
+            
+            Producto producto = new Producto(idProducto, nombre, cantidad, descripcion, precio, imagen);
             st.close();
             return gson.toJson(producto);
 
