@@ -40,7 +40,16 @@ $(document).ready(function () {
             $("#admin-form").load("component/admin-crear-producto.html");
         });
     });
+    
+    $("#admin-lista-productos").on("click", function(event){
+    let productoId = event.target.id;
+    if(productoId != ""){
+        confirmacionEliminarProducto(productoId);
+    }
+    });
 
+  
+      
 });
 
 function iniciarPagina(path){
