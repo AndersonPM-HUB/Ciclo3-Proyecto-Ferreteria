@@ -49,9 +49,20 @@ CREATE TABLE IF NOT EXISTS `categorias_productos` (
   CONSTRAINT `categorias_productos_FK_1` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
--- Volcando datos para la tabla ferreteria.categorias_productos: ~11 rows (aproximadamente)
+-- Volcando datos para la tabla ferreteria.categorias_productos: ~22 rows (aproximadamente)
 /*!40000 ALTER TABLE `categorias_productos` DISABLE KEYS */;
 INSERT IGNORE INTO `categorias_productos` (`id_categoria`, `id_producto`) VALUES
+	(6, 1),
+	(6, 2),
+	(6, 3),
+	(6, 4),
+	(6, 5),
+	(6, 6),
+	(6, 7),
+	(6, 8),
+	(6, 9),
+	(6, 10),
+	(1, 10),
 	(6, 1),
 	(6, 2),
 	(6, 3),
@@ -95,16 +106,16 @@ CREATE TABLE IF NOT EXISTS `productos` (
 -- Volcando datos para la tabla ferreteria.productos: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
 INSERT IGNORE INTO `productos` (`id`, `nombre`, `cantidad`, `descripcion`, `precio_unidad`, `imagen`) VALUES
-	(1, 'Cizalla corta', 10, NULL, 133900, NULL),
-	(2, 'Cortador de tubos', 15, NULL, 50900, NULL),
-	(3, 'Juego de copas', 10, '1/4 y 3/8, 39 Piezas', 50900, NULL),
-	(4, 'Pistola Calafateadora', 15, NULL, 44500, NULL),
-	(5, 'Pinza de presion', 15, NULL, 43900, NULL),
-	(6, 'Llave para plomero', 5, NULL, 42900, NULL),
-	(7, 'Llave copa multiusos', 10, '', 41300, NULL),
-	(8, 'Broca para hierro', 30, NULL, 39913, NULL),
-	(9, 'Alicate', 10, NULL, 38500, NULL),
-	(10, 'Hombresolo', 10, 'Punta larga', 33900, NULL);
+	(1, 'Cizalla corta', 10, NULL, 133900, 'media/cizalla.jpg'),
+	(2, 'Cortador de tubos', 15, NULL, 50900, 'media/cortadortubos.jpg'),
+	(3, 'Juego de copas', 10, '1/4 y 3/8, 39 Piezas', 50900, 'media/juegocopas.png'),
+	(4, 'Pistola Calafateadora', 15, NULL, 44500, 'media/pistola-calafateadora.jpg'),
+	(5, 'Pinza de presion', 15, NULL, 43900, 'media/pinza.jpg'),
+	(6, 'Llave para plomero', 5, NULL, 42900, 'media/llaveplomero.jpg'),
+	(7, 'Llave copa multiusos', 10, '', 41300, 'media/llavemulti.jpg'),
+	(8, 'Broca para hierro', 30, NULL, 39913, 'media/broca.jpg'),
+	(9, 'Alicate', 10, NULL, 38500, 'media/alicate.jpg'),
+	(10, 'Hombresolo', 10, 'Punta larga', 33900, 'media/hombresolo.jpg');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla ferreteria.productos_compras
@@ -129,21 +140,23 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombres` varchar(100) COLLATE latin1_bin DEFAULT NULL,
   `apellidos` varchar(100) COLLATE latin1_bin DEFAULT NULL,
   `correo` varchar(150) COLLATE latin1_bin NOT NULL,
+  `rol` tinyint(4) DEFAULT 0,
   `contrasena` varchar(128) COLLATE latin1_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
--- Volcando datos para la tabla ferreteria.usuarios: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla ferreteria.usuarios: ~10 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT IGNORE INTO `usuarios` (`id`, `usuario`, `nombres`, `apellidos`, `correo`, `contrasena`) VALUES
-	(1, 'Valen7v', 'Dana Valentina', 'Manchego Alvarez', 'danamanchego7065@gmail.com', NULL),
-	(2, 'JAnto21', 'Julian Antonio', 'Maldonado Rico', 'julianto1991@gmail.com', NULL),
-	(3, 'CarlBele5', 'Carlos', 'Belen Lara', 'carlbe505@gmail.com', NULL),
-	(4, 'MariJofe', 'Maria José', 'Castillo Paez', 'mariapaez2000@gmail.com', NULL),
-	(5, 'Alej02', 'Alejandra', 'Rodriguez Romero', 'alejaromero2022@gmail.com', NULL),
-	(6, 'admin', 'admin', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3'),
-	(7, '1002683521', 'Guillermo', 'Antonio', 'guilleantoq0@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-	(8, '1002455632', 'Julian ', 'Torres Garcia', 'juliangarcia1020@gmail.com', '962012d09b8170d912f0669f6d7d9d07');
+INSERT IGNORE INTO `usuarios` (`id`, `usuario`, `nombres`, `apellidos`, `correo`, `rol`, `contrasena`) VALUES
+	(1, 'Valen7v', 'Dana Valentina', 'Manchego Alvarez', 'danamanchego7065@gmail.com', 0, NULL),
+	(2, 'JAnto21', 'Julian Antonio', 'Maldonado Rico', 'julianto1991@gmail.com', 0, NULL),
+	(3, 'CarlBele5', 'Carlos', 'Belen Lara', 'carlbe505@gmail.com', 0, NULL),
+	(4, 'MariJofe', 'Maria José', 'Castillo Paez', 'mariapaez2000@gmail.com', 0, NULL),
+	(5, 'Alej02', 'Alejandra', 'Rodriguez Romero', 'alejaromero2022@gmail.com', 0, NULL),
+	(6, 'admin', 'admin', 'admin', 'admin@admin.com', 1, '21232f297a57a5a743894a0e4a801fc3'),
+	(7, '1002683521', 'Guillermo', 'Antonio', 'guilleantoq0@gmail.com', 0, '827ccb0eea8a706c4c34a16891f84e7b'),
+	(8, '1002455632', 'Julian ', 'Torres Garcia', 'juliangarcia1020@gmail.com', 0, '962012d09b8170d912f0669f6d7d9d07'),
+	(10, 'test', 'test', 'test', 'test', 1, '098f6bcd4621d373cade4e832627b4f6');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
