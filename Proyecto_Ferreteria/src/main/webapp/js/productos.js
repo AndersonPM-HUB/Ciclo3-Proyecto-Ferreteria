@@ -64,15 +64,15 @@ function mostrarProductos(productos) {
 
         contenido += '<div class="card">' +
             '<div class="card-header">' +
-            '<h5 class="card-title">' + productos.nombre + '</h5>' +
+            '<h5 class="card-title item-title">' + productos.nombre + '</h5>' +
             '</div>' +
             '<div class="card-body">' +
-            '<img src="' + productos.imagen + '" class="card-img-top" alt="">' +
+            '<img src="' + productos.imagen + '" class="card-img-top item-image" alt="">' +
             '<p class="card-text mt-5">' + productos.descripcion + '</p>' +
-            '<p class="card-text">Precio Unidad: ' + productos.precioUnidad + '</p>' +
+            '<p class="card-text item-price">Precio Unidad: ' + productos.precioUnidad + '</p>' +
             '<p class="card-text">Stock: ' + productos.cantidad + '</p>' +
             '<div class="container-fluid mt-5 text-center">' +
-                '<a href="#" class="btn btn-danger" >Añadir al carrito</a>' +
+                '<button class="btn btn-danger addToCart" >Añadir al carrito</button>' +
             '</div>'+
             '</div>' +
             '<div class="card-footer text-center text-muted">' +
