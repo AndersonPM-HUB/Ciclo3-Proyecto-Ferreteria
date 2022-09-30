@@ -138,6 +138,7 @@ function crearProducto() {
             let parsedResult = JSON.parse(result);
             if (parsedResult != false) {
                 subirImagen();
+                Swal.fire('¡El registro ha sido agregado!', '', 'success');
                 window.location.replace("admin.html");
             }
         }

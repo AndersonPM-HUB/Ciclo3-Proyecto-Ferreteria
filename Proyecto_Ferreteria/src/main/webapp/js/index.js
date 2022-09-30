@@ -21,6 +21,11 @@ $(document).ready(function () {
         registrarUsuario();
     });
 
+    $("#busqueda").submit(function (event) {
+        event.preventDefault();
+        buscarProducto();
+    });
+
     $('#adm-producto').on('click', function(event){
         event.preventDefault();
         $("#admin-title").html("Lista de productos");
@@ -28,9 +33,11 @@ $(document).ready(function () {
         getProductos(path);
     });
     
-    $("#busqueda").submit(function (event) {
+    $('#adm-categorias').on('click', function(event){
         event.preventDefault();
-        buscarProducto();
+        $("#admin-title").html("Lista de categorias");
+        $("#admin-form").load("component/admin-listar-categorias.html");
+        getProductos(path);
     });
     
     $('#adm-form').ready(function(){
@@ -38,6 +45,12 @@ $(document).ready(function () {
             event.preventDefault();
             $("#admin-title").html("Crear producto");
             $("#admin-form").load("component/admin-crear-producto.html");
+        });
+
+        $('#btn-crear-categoria').on('click', function(event){
+            event.preventDefault();
+            $("#admin-title").html("Crear categoria");
+            $("#admin-form").load("component/admin-crear-categorias.html");
         });
     });
     
@@ -47,9 +60,7 @@ $(document).ready(function () {
         confirmacionEliminarProducto(productoId);
     }
     });
-
   
-      
 });
 
 function iniciarPagina(path){
