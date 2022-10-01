@@ -168,6 +168,7 @@ async function subirImagen() {
     });
 }
 
+
 function eliminarProducto(idProducto){
      $.ajax({
         type: "GET",
@@ -202,3 +203,4 @@ function confirmacionEliminarProducto(idProducto) {
         } 
     })
 }
+
