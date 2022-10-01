@@ -144,3 +144,8 @@ a:hover{
     background-position-x: 95%;
     background-position-y: center;
 }
+
+.carrito-contenedor{
+    
+    max-height: 100vh;
+}

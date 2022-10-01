@@ -25,20 +25,20 @@ function getProductos(path) {
             }),
             success: function (result) {
                 let parsedResult = JSON.parse(result);
-                if(result.length != 4){
-                     mostrarProductos(parsedResult);
-                }else{
-                   Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'No se encontro producto!',
-                   
-                });
-                 
+                if (result.length != 4) {
+                    mostrarProductos(parsedResult);
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No se encontro producto!',
+
+                    });
+
                 }
             },
             error: function (result) {
-                 Swal.fire('Digita un producto') ;
+                Swal.fire('Digita un producto');
             }
         });
     } else {
@@ -109,14 +109,13 @@ function listarProductos(productos) {
         productos = JSON.parse(producto);
 
         contenido += '<tr id="row-' + productos.id + '">' +
-        contenido += '<tr>' +
                 '<th scope="row">' + contador + '</th>' +
                 '<td>' + productos.nombre + '</td>' +
                 '<td>' + productos.descripcion + '</td>' +
                 '<td>' + productos.cantidad + '</td>' +
                 '<td>' + productos.precioUnidad + '</td>' +
-                '<td id="eliminarProducto"><a id="' + productos.id + '" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' 
-                '</tr>';
+                '<td id="eliminarProducto"><a id="' + productos.id + '" class="btn btn-outline-danger btn-sm">Eliminar</a></td>'
+        '</tr>';
         contador += 1;
     });
     $("#admin-lista-productos").html(contenido);
@@ -168,9 +167,9 @@ async function subirImagen() {
     });
 }
 
+function eliminarProducto(idProducto) {
+    $.ajax({
 
-function eliminarProducto(idProducto){
-     $.ajax({
         type: "GET",
         dataType: "html",
         url: "./ServletProductoEliminar",
@@ -181,10 +180,17 @@ function eliminarProducto(idProducto){
             let parsedResult = JSON.parse(result);
             if (parsedResult != false) {
                 $("#row-" + idProducto).remove();
-                Swal.fire('¡El registro ha sido elimindo!', '', 'success');
+                Swal.fire({
+                    title: '¡El registro ha sido eliminado!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok',
+                    customClass: {
+                        confirmButton: 'bg-danger',
+                    }
+                });
             }
         }
-        });
+    });
 }
 
 function confirmacionEliminarProducto(idProducto) {
@@ -200,7 +206,7 @@ function confirmacionEliminarProducto(idProducto) {
     }).then((result) => {
         if (result.isConfirmed) {
             eliminarProducto(idProducto);
-        } 
+        }
     })
 }
 

@@ -34,7 +34,7 @@ function getCategorias(val) {
         data: $.param,
         success: function (result) {
             let parsedResult = JSON.parse(result);
-            
+
             if (parsedResult != false) {
                 if (val === 0) {
                     listaCategorias(parsedResult);
@@ -109,7 +109,14 @@ function eliminarCategoria(idCategoria) {
             let parsedResult = JSON.parse(result);
             if (parsedResult != false) {
                 $("#row-" + idCategoria).remove();
-                Swal.fire('¡El registro ha sido elimindo!', '', 'success');
+                Swal.fire({
+                    title: '¡La categoria ha sido eliminada!',
+                    icon: 'success',
+                    confirmButtonText: 'Ok',
+                    customClass: {
+                        confirmButton: 'bg-danger',
+                    }
+                })
             }
         }
     });
@@ -148,40 +155,41 @@ function confirmacionEliminarCategoria(idCategoria) {
     })
 }
 
-function mostrarCategorias(categorias){
+function mostrarCategorias(categorias) {
 
     let contenido = "";
-    $.each(categorias, function(index, categoria){
+    $.each(categorias, function (index, categoria) {
         categorias = JSON.parse(categoria);
-      
-        contenido += '<li><a href="#" class="nav-link scrollto active"  onclick="categoriaBuscar(' +categorias.id+ ');"><span>' + categorias.nombre+ '</span></a></li><br>' ;
+
+        contenido += '<li><a href="#" class="nav-link scrollto active"  onclick="categoriaBuscar(' + categorias.id + ');"><span>' + categorias.nombre + '</span></a></li><br>';
     });
     $("#categorias-lista").html(contenido);
-    
+
 }
 
-  
-function categoriaBuscar(id){
+
+function categoriaBuscar(id) {
     $.ajax({
         type: "GET",
         dataType: "html",
         url: "./ServletCategoriasProductos",
         data: $.param({
-                id: id
-            }),
+            id: id
+        }),
         success: function (result) {
             let parsedResult = JSON.parse(result);
             console.log(parsedResult);
-            if(result.length != 4){
+            if (result.length != 4) {
                 mostrarProductos(parsedResult);
-                }else{
-                   Swal.fire({
+            } else {
+                Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
                     text: 'No se encontro categoria!',
-                   
-                });}
-    }
+
+                });
+            }
+        }
     });
 }
 
