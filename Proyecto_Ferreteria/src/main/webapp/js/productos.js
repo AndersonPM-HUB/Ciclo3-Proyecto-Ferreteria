@@ -101,7 +101,6 @@ function listarProductos(productos) {
                 '<td>' + productos.descripcion + '</td>' +
                 '<td>' + productos.cantidad + '</td>' +
                 '<td>' + productos.precioUnidad + '</td>' +
-                '<td><a id="editar-producto" class="btn btn-outline-warning btn-sm">Editar</a></td>' +
                 '<td id="eliminarProducto"><a id="' + productos.id + '" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' +
                 '</tr>';
         contador += 1;
@@ -138,8 +137,7 @@ function crearProducto() {
             let parsedResult = JSON.parse(result);
             if (parsedResult != false) {
                 subirImagen();
-                Swal.fire('¡El registro ha sido agregado!', '', 'success');
-                window.location.replace("admin.html");
+                successRelocate();
             }
         }
     });
