@@ -3,6 +3,7 @@ package controller;
 import beans.Producto;
 import com.google.gson.Gson;
 import connection.DBConnection;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class ProductosController implements IProductosController {
             Statement st = con.getConnection().createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                
+
                 int id = rs.getInt("id");
                 String nombre = rs.getString("nombre");
                 int cantidad = rs.getInt("cantidad");
@@ -58,8 +59,8 @@ public class ProductosController implements IProductosController {
 
         //busqueda efectiva 
         String palabra = producto.toUpperCase().charAt(0) + producto.substring(1, producto.length()).toLowerCase();
-        String sql = "SELECT * FROM productos WHERE nombre LIKE '"+ palabra +"%'";
-        System.out.println(sql);
+        String sql = "SELECT * FROM productos WHERE nombre LIKE '" + palabra + "%'";
+      
         //arreglo para guardar esto 
         List<String> listaProductos = new ArrayList();
 
@@ -75,9 +76,7 @@ public class ProductosController implements IProductosController {
                 String imagen = rs.getString("imagen");
 
                 Producto p = new Producto(nombre, cantidad, descripcion, precio, imagen);
-
-                System.out.println(p);
-
+             
                 listaProductos.add(gson.toJson(p));
             }
 
@@ -91,30 +90,29 @@ public class ProductosController implements IProductosController {
         return gson.toJson(listaProductos);
 
     }
-    
+
     @Override
     public String crearProducto(String nombre, Integer cantidad, String descripcion, Double precio,
             Integer categoria, String imagen) {
-        
+
         Gson gson = new Gson();
         DBConnection con = new DBConnection();
         int idProducto = 0;
         String sql = "INSERT INTO productos (nombre, cantidad, descripcion, precio_unidad, imagen) VALUES('" + nombre + "', '" + cantidad + "', '" + descripcion
                 + "', '" + precio + "', '" + imagen + "')";
         String sql_two = "SELECT id FROM productos WHERE nombre ='" + nombre + "' AND cantidad='" + cantidad + "' AND descripcion='" + descripcion + "'";
-        System.out.println(sql_two);
         try {
             Statement st = con.getConnection().createStatement();
             st.executeUpdate(sql);
-            
+
             ResultSet rs = st.executeQuery(sql_two);
-            while(rs.next()){
+            while (rs.next()) {
                 idProducto = rs.getInt("id");
             }
-            
+
             sql = "INSERT INTO categorias_productos(id_categoria, id_producto) VALUES('" + categoria + "', '" + idProducto + "')";
             st.executeUpdate(sql);
-            
+
             Producto producto = new Producto(idProducto, nombre, cantidad, descripcion, precio, imagen);
             st.close();
             return gson.toJson(producto);
@@ -127,5 +125,89 @@ public class ProductosController implements IProductosController {
         }
 
         return "false";
+
+    }
+
+    @Override
+    public String eliminarProducto(int idProducto, String path) {
+        DBConnection con = new DBConnection();
+
+        try {
+            Statement st = con.getConnection().createStatement();
+            String sql = "SELECT imagen FROM productos WHERE id='" + idProducto + "'";
+            ResultSet rs = st.executeQuery(sql);
+            String imagen = "";
+            
+            while (rs.next()) {
+                imagen = rs.getString("imagen");
+            }
+            
+            try {
+                String[] imagePart = imagen.split("/");
+                path = path + "\\" + imagePart[1];
+                File archivoImagen = new File(path);
+
+                if (archivoImagen.delete()) {
+                    System.out.println("Image deleted...");
+                } else {
+                    System.out.println("Image not deleted...");
+                }
+            }catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+
+            sql = "DELETE FROM productos WHERE id='" + idProducto + "'";
+            st.executeUpdate(sql);
+            return "true";
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            con.desconectar();
+        }
+        return "false";
+
 }
+
+    @Override
+    public String listarProductosPorCategoria(int idCategoria) {
+        
+        Gson gson = new Gson();
+        DBConnection con = new DBConnection();
+
+        String sql = "SELECT p.id,p.nombre,p.cantidad,p.descripcion,p.precio_unidad,p.imagen \n" +
+                    "FROM categorias_productos AS ct \n" +
+                    "INNER JOIN productos AS p ON ct.id_producto = p.id\n" +
+                    "INNER JOIN categorias AS c ON  ct.id_categoria = c.id\n" +
+                    "WHERE ct.id_categoria ='"+ idCategoria+ "'" +
+                    "GROUP BY p.id";
+       
+        List<String> listaProductos = new ArrayList();
+
+        try {
+            Statement st = con.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                int cantidad = rs.getInt("cantidad");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio_unidad");
+                String imagen = rs.getString("imagen");
+
+                Producto p = new Producto(id, nombre, cantidad, descripcion, precio, imagen);
+                
+                listaProductos.add(gson.toJson(p));
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            con.desconectar();
+        }
+
+        return gson.toJson(listaProductos);
+
+    }
 }

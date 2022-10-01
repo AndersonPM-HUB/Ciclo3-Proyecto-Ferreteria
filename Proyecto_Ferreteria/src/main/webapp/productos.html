@@ -12,6 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/productos_style.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script><!-- comment -->
 </head>
 
 <body>
@@ -24,24 +25,9 @@
                         <div class="bg-light rounded-lg" id="seccion-categorias">
                             <nav id="navbar" class="nav-menu navbar justify-content-center ">
                                 <h3>Categorias</h3>
-                                <ul>
-                                    <li><a href="#" class="nav-link scrollto active"><i class="bx bx-home"></i>
-                                            <span>Industria</span></a></li><br>
-                                    <li><a href="#" class="nav-link scrollto"><i class="bx bx-user"></i>
-                                            <span>Construccion-madera</span></a></li><br>
-                                    <li><a href="" class="nav-link scrollto"><i class="bx bx-file-blank"></i>
-                                            <span>Sellantes</span></a></li><br>
-                                    <li><a href="#" class="nav-link scrollto"><i class="bx bx-book-content"></i>
-                                            <span>Pinturas y Complementos</span></a></li><br>
-                                    <li><a href="#" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Equipos
-                                                de
-                                                trabajo</span></a></li><br>
-                                    <li><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i>
-                                            <span>Mobiliario -jardín</span></a></li><br>
-
+                                <ul id="categorias-lista">
+                                   
                                 </ul>
-
-
                         </div>
                     </div>
 
@@ -67,14 +53,17 @@
                     </div>
                 </div>
             </div>
+         
+            <script src="sweetalert2.all.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+            <script src="js/categorias.js"></script>
+            <script src="js/cookies.js"></script>
             <script src="js/usuarios.js"></script>
             <script src="js/carrito.js"></script>
             <script src="js/productos.js"></script>
-            <script src="js/cookies.js"></script>
             <script src="js/index.js"></script>
 </body>
 
