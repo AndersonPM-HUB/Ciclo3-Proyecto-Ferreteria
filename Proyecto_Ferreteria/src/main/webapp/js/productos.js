@@ -1,3 +1,4 @@
+
 function getProductos(path) {
     let queryString = window.location.search;
     let busqueda;
@@ -24,9 +25,20 @@ function getProductos(path) {
             }),
             success: function (result) {
                 let parsedResult = JSON.parse(result);
-                console.log(result);
-
-                mostrarProductos(parsedResult);
+                if(result.length != 4){
+                     mostrarProductos(parsedResult);
+                }else{
+                   Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No se encontro producto!',
+                   
+                });
+                 
+                }
+            },
+            error: function (result) {
+                 Swal.fire('Digita un producto') ;
             }
         });
     } else {
@@ -40,6 +52,7 @@ function getProductos(path) {
 
                 if (path === "productos.html") {
                     mostrarProductos(parsedResult);
+                    getCategorias();
                 }
                 if (path === "admin.html") {
                     listarProductos(parsedResult);
@@ -54,7 +67,6 @@ function mostrarProductos(productos) {
     let contador = 0;
     let cards = 0;
     $.each(productos, function (index, producto) {
-
         productos = JSON.parse(producto);
 
         if (contador === 0 || contador % 3 === 0) {
@@ -63,21 +75,21 @@ function mostrarProductos(productos) {
         }
 
         contenido += '<div class="card">' +
-            '<div class="card-header">' +
-            '<h5 class="card-title">' + productos.nombre + '</h5>' +
-            '</div>' +
-            '<div class="card-body">' +
-            '<img src="' + productos.imagen + '" class="card-img-top" alt="">' +
-            '<p class="card-text mt-5">' + productos.descripcion + '</p>' +
-            '<p class="card-text">Precio Unidad: ' + productos.precioUnidad + '</p>' +
-            '<p class="card-text">Stock: ' + productos.cantidad + '</p>' +
-            '<div class="container-fluid mt-5 text-center">' +
+                '<div class="card-header">' +
+                '<h5 class="card-title">' + productos.nombre + '</h5>' +
+                '</div>' +
+                '<div class="card-body">' +
+                '<img src="' + productos.imagen + '" class="card-img-top" alt="">' +
+                '<p class="card-text mt-5">' + productos.descripcion + '</p>' +
+                '<p class="card-text">Precio Unidad: ' + productos.precioUnidad + '</p>' +
+                '<p class="card-text">Stock: ' + productos.cantidad + '</p>' +
+                '<div class="container-fluid mt-5 text-center">' +
                 '<a href="#" class="btn btn-danger" >Añadir al carrito</a>' +
-            '</div>'+
-            '</div>' +
-            '<div class="card-footer text-center text-muted">' +
-            '</div>' +
-            '</div> ';
+                '</div>' +
+                '</div>' +
+                '<div class="card-footer text-center text-muted">' +
+                '</div>' +
+                '</div> ';
 
         cards += 1
         if (cards === 3) {
@@ -96,14 +108,14 @@ function listarProductos(productos) {
     $.each(productos, function (index, producto) {
         productos = JSON.parse(producto);
         contenido += '<tr>' +
-            '<th scope="row">' + contador + '</th>' +
-            '<td>' + productos.nombre + '</td>' +
-            '<td>' + productos.descripcion + '</td>' +
-            '<td>' + productos.cantidad + '</td>' +
-            '<td>' + productos.precioUnidad + '</td>' +
-            '<td><a id="editar-producto" class="btn btn-outline-warning btn-sm">Editar</a></td>' +
-            '<td><a id="borrar-producto" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' +
-            '</tr>';
+                '<th scope="row">' + contador + '</th>' +
+                '<td>' + productos.nombre + '</td>' +
+                '<td>' + productos.descripcion + '</td>' +
+                '<td>' + productos.cantidad + '</td>' +
+                '<td>' + productos.precioUnidad + '</td>' +
+                '<td><a id="editar-producto" class="btn btn-outline-warning btn-sm">Editar</a></td>' +
+                '<td><a id="borrar-producto" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' +
+                '</tr>';
         contador += 1;
     });
     $("#admin-lista-productos").html(contenido);
@@ -114,37 +126,37 @@ function buscarProducto() {
     document.location.href = "productos.html?product=" + producto;
 }
 
-function crearProducto(){
+function crearProducto() {
     let nombre = $("#input-nombre-producto").val();
     let cantidad = $("#input-cantidad-producto").val();
     let descripcion = $("#input-descripcion-producto").val();
     let precio = $("#input-precio-producto").val();
     let categoria = $("#list-categoria").find(":selected").val();
     let imagen = $("#input-producto-imagen").val().split('\\').pop();
-    
+
     $.ajax({
-            type: "GET",
-            dataType: "html",
-            url: "./ServletProductoCrear",
-            data: $.param({
-                nombre: nombre,
-                cantidad: cantidad,
-                descripcion: descripcion,
-                precio: precio,
-                categoria: categoria,
-                imagen: "media/" + imagen
-            }),
-            success: function (result) {
-                let parsedResult = JSON.parse(result);
-                if(parsedResult != false){
-                    subirImagen();
-                    window.location.replace("admin.html");
-                }  
+        type: "GET",
+        dataType: "html",
+        url: "./ServletProductoCrear",
+        data: $.param({
+            nombre: nombre,
+            cantidad: cantidad,
+            descripcion: descripcion,
+            precio: precio,
+            categoria: categoria,
+            imagen: "media/" + imagen
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            if (parsedResult != false) {
+                subirImagen();
+                window.location.replace("admin.html");
             }
-        });
+        }
+    });
 }
 
-async function subirImagen(){
+async function subirImagen() {
     let formData = new FormData();
     let imagen = $("#input-producto-imagen");
     formData.append("imagen", imagen.get(0).files[0]);

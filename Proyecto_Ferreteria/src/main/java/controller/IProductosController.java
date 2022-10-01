@@ -16,4 +16,6 @@ public interface IProductosController {
     
     public String crearProducto(String nombre, Integer cantidad, String descripcion, Double precio,
             Integer categoria, String imagen);
+    
+    public String listarProductosPorCategoria(int idCategoria); 
 }
