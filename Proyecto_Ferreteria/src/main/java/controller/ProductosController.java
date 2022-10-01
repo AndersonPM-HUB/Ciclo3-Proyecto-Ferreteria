@@ -128,4 +128,45 @@ public class ProductosController implements IProductosController {
 
         return "false";
 }
+
+    @Override
+    public String listarProductosPorCategoria(int idCategoria) {
+       Gson gson = new Gson();
+        DBConnection con = new DBConnection();
+
+        String sql = "SELECT p.id,p.nombre,p.cantidad,p.descripcion,p.precio_unidad,p.imagen \n" +
+                    "FROM categorias_productos AS ct \n" +
+                    "INNER JOIN productos AS p ON ct.id_producto = p.id\n" +
+                    "INNER JOIN categorias AS c ON  ct.id_categoria = c.id\n" +
+                    "WHERE ct.id_categoria ='"+ idCategoria+ "'" +
+                    "GROUP BY p.id";
+        //arreglo para guardar esto 
+        List<String> listaProductos = new ArrayList();
+
+        try {
+            Statement st = con.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                
+                int id = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                int cantidad = rs.getInt("cantidad");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio_unidad");
+                String imagen = rs.getString("imagen");
+
+                Producto p = new Producto(id, nombre, cantidad, descripcion, precio, imagen);
+                // System.out.println(p);
+                listaProductos.add(gson.toJson(p));
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            con.desconectar();
+        }
+
+        return gson.toJson(listaProductos);
+    }
 }
