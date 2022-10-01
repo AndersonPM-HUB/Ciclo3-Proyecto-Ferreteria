@@ -107,19 +107,21 @@ function listarProductos(productos) {
     let contador = 1;
     $.each(productos, function (index, producto) {
         productos = JSON.parse(producto);
+
+        contenido += '<tr id="row-' + productos.id + '">' +
         contenido += '<tr>' +
                 '<th scope="row">' + contador + '</th>' +
                 '<td>' + productos.nombre + '</td>' +
                 '<td>' + productos.descripcion + '</td>' +
                 '<td>' + productos.cantidad + '</td>' +
                 '<td>' + productos.precioUnidad + '</td>' +
-                '<td><a id="editar-producto" class="btn btn-outline-warning btn-sm">Editar</a></td>' +
-                '<td><a id="borrar-producto" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' +
+                '<td id="eliminarProducto"><a id="' + productos.id + '" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' 
                 '</tr>';
         contador += 1;
     });
     $("#admin-lista-productos").html(contenido);
 }
+
 
 function buscarProducto() {
     let producto = $("#product").val();
@@ -150,7 +152,7 @@ function crearProducto() {
             let parsedResult = JSON.parse(result);
             if (parsedResult != false) {
                 subirImagen();
-                window.location.replace("admin.html");
+                successRelocate();
             }
         }
     });
@@ -164,4 +166,39 @@ async function subirImagen() {
         method: "POST",
         body: formData,
     });
+}
+
+function eliminarProducto(idProducto){
+     $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletProductoEliminar",
+        data: $.param({
+            id: idProducto
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            if (parsedResult != false) {
+                $("#row-" + idProducto).remove();
+                Swal.fire('¡El registro ha sido elimindo!', '', 'success');
+            }
+        }
+        });
+}
+
+function confirmacionEliminarProducto(idProducto) {
+    Swal.fire({
+        title: '¿Estás seguro que quieres eliminar este producto?',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        icon: 'warning',
+        customClass: {
+            confirmButton: 'bg-danger',
+            cancelButton: 'bg-dark'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            eliminarProducto(idProducto);
+        } 
+    })
 }

@@ -10,4 +10,6 @@ package controller;
  */
 public interface ICategoriaController {
     public String listarCategorias();
+    public String crearCategoria(String nombre, String descripcion);
+    public String eliminarCategoria(int idCategoria);
 }

@@ -47,4 +47,41 @@ public class CategoriaController implements ICategoriaController {
 
         return gson.toJson(listaCategorias);
     }
+    
+    @Override
+    public String crearCategoria(String nombre, String descripcion){
+        Gson gson = new Gson();
+        DBConnection con = new DBConnection();
+        String sql = "INSERT INTO categorias (nombre, descripcion) VALUES('" + nombre + "', '" + descripcion + "')" ;
+        try{
+            Statement st = con.getConnection().createStatement();
+            st.executeUpdate(sql);
+            
+            Categoria cat = new Categoria(nombre, descripcion);
+            st.close();
+            return gson.toJson(cat);
+            
+        }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            con.desconectar();
+        }
+        return "false";
+    }
+    
+    @Override
+    public String eliminarCategoria(int idCategoria){
+        DBConnection con = new DBConnection();
+        String sql = "DELETE FROM categorias WHERE id='" + idCategoria + "'";
+        try {
+            Statement st = con.getConnection().createStatement();
+            st.executeUpdate(sql);
+            return "true";    
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            con.desconectar();
+        }
+        return "false";    
+    }
 }
