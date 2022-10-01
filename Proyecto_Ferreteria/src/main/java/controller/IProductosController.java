@@ -18,4 +18,7 @@ public interface IProductosController {
             Integer categoria, String imagen);
     
     public String eliminarProducto(int idProducto, String path);
+
+    public String listarProductosPorCategoria(int idCategoria); 
+
 }

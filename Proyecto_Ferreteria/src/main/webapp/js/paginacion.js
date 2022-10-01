@@ -3,25 +3,37 @@ $(window).ready(function () {
     path = path.split('/');
     path = path[path.length - 1];
     if (path === "productos.html") {
-        paginationModel();
+        
+        console.log($('.pagination').length);
+//        if ($('.pagination').length === 0){
+            paginationModel(); 
+//        }
     }
 });
 
-function paginationModel() {
-    var numberOfItems = $('#tarjetas-productos .row').length; // Get total number of the items that should be paginated
-    var limitPerPage = 2; // Limit of items per each page
-    $('#tarjetas-productos .row:gt(' + (limitPerPage - 1) + ')').hide(); // Hide all items over page limits (e.g., 5th item, 6th item, etc.)
-    var totalPages = Math.round(numberOfItems / limitPerPage); // Get number of pages
+function dibujarPaginacion(totalPages){
     $(".pagination").append("<li class='current-page page-item bg-danger active'><a href='javascript:void(0)' class='page-link '> " + 1 + "</a></li>"); // Add first page marker
-
     // Loop to insert page number for each sets of items equal to page limit (e.g., limit of 4 with 20 total items = insert 5 pages)
     for (var i = 2; i <= totalPages; i++) {
         $(".pagination").append("<li class='current-page page-item '><a href='javascript:void(0)' class='page-link'>" + i + "</a></li>"); // Insert page number into pagination tabs
     }
-
     // Add next button after all the page numbers  
     $(".pagination").append("<li class='page-item' id='next-page'><a href='javascript:void(0)' class='page-link' aria-label=Next><span aria-hidden=true>&raquo;</span></a></li>");
 
+}
+
+
+function paginationModel() {
+    
+    var numberOfItems = $('#tarjetas-productos .row').length;
+    console.log(numberOfItems);// Get total number of the items that should be paginated
+    var limitPerPage = 2; console.log(numberOfItems); // Limit of items per each page
+    $('#tarjetas-productos .row:gt(' + (limitPerPage - 1) + ')').hide(); // Hide all items over page limits (e.g., 5th item, 6th item, etc.)
+    var totalPages = Math.round(numberOfItems / limitPerPage);  console.log("pag"+totalPages);// Get number of pages
+  
+    $('.pagination').empty();
+    dibujarPaginacion(totalPages);
+    
     // Function that displays new items based on page number that was clicked
     $(".pagination li.current-page").on("click", function () {
         // Check if page number that was clicked on is the current page that is being displayed
@@ -87,3 +99,4 @@ function paginationModel() {
         }
     });
 }
+

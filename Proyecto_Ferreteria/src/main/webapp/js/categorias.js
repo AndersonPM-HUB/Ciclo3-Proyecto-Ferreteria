@@ -25,6 +25,7 @@ $(document).ready(function () {
     });
 });
 
+
 function getCategorias(val) {
     $.ajax({
         type: "GET",
@@ -33,15 +34,17 @@ function getCategorias(val) {
         data: $.param,
         success: function (result) {
             let parsedResult = JSON.parse(result);
+            
             if (parsedResult != false) {
                 if (val === 0) {
                     listaCategorias(parsedResult);
                 }
                 if (val === 1) {
-                    mostrarCategorias(parsedResult);
+                    mostrarCategoriasAdmin(parsedResult);
                 }
             }
-
+            listaCategorias(parsedResult);
+            mostrarCategorias(parsedResult);
         }
     });
 }
@@ -56,7 +59,7 @@ function listaCategorias(categorias) {
     $("#list-categoria").html(contenido);
 }
 
-function mostrarCategorias(categorias) {
+function mostrarCategoriasAdmin(categorias) {
     let contenido = ""
     let contador = 1;
     $.each(categorias, function (index, categoria) {
@@ -144,3 +147,41 @@ function confirmacionEliminarCategoria(idCategoria) {
         }
     })
 }
+
+function mostrarCategorias(categorias){
+
+    let contenido = "";
+    $.each(categorias, function(index, categoria){
+        categorias = JSON.parse(categoria);
+      
+        contenido += '<li><a href="#" class="nav-link scrollto active"  onclick="categoriaBuscar(' +categorias.id+ ');"><span>' + categorias.nombre+ '</span></a></li><br>' ;
+    });
+    $("#categorias-lista").html(contenido);
+    
+}
+
+  
+function categoriaBuscar(id){
+    $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletCategoriasProductos",
+        data: $.param({
+                id: id
+            }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            console.log(parsedResult);
+            if(result.length != 4){
+                mostrarProductos(parsedResult);
+                }else{
+                   Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No se encontro categoria!',
+                   
+                });}
+    }
+    });
+}
+

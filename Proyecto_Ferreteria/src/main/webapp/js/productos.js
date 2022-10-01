@@ -1,3 +1,4 @@
+
 function getProductos(path) {
     let queryString = window.location.search;
     let busqueda;
@@ -24,9 +25,20 @@ function getProductos(path) {
             }),
             success: function (result) {
                 let parsedResult = JSON.parse(result);
-                console.log(result);
-
-                mostrarProductos(parsedResult);
+                if(result.length != 4){
+                     mostrarProductos(parsedResult);
+                }else{
+                   Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No se encontro producto!',
+                   
+                });
+                 
+                }
+            },
+            error: function (result) {
+                 Swal.fire('Digita un producto') ;
             }
         });
     } else {
@@ -40,6 +52,7 @@ function getProductos(path) {
 
                 if (path === "productos.html") {
                     mostrarProductos(parsedResult);
+                    getCategorias();
                 }
                 if (path === "admin.html") {
                     listarProductos(parsedResult);
@@ -54,7 +67,6 @@ function mostrarProductos(productos) {
     let contador = 0;
     let cards = 0;
     $.each(productos, function (index, producto) {
-
         productos = JSON.parse(producto);
 
         if (contador === 0 || contador % 3 === 0) {
@@ -95,18 +107,21 @@ function listarProductos(productos) {
     let contador = 1;
     $.each(productos, function (index, producto) {
         productos = JSON.parse(producto);
+
         contenido += '<tr id="row-' + productos.id + '">' +
+        contenido += '<tr>' +
                 '<th scope="row">' + contador + '</th>' +
                 '<td>' + productos.nombre + '</td>' +
                 '<td>' + productos.descripcion + '</td>' +
                 '<td>' + productos.cantidad + '</td>' +
                 '<td>' + productos.precioUnidad + '</td>' +
-                '<td id="eliminarProducto"><a id="' + productos.id + '" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' +
+                '<td id="eliminarProducto"><a id="' + productos.id + '" class="btn btn-outline-danger btn-sm">Eliminar</a></td>' 
                 '</tr>';
         contador += 1;
     });
     $("#admin-lista-productos").html(contenido);
 }
+
 
 function buscarProducto() {
     let producto = $("#product").val();
