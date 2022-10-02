@@ -11,21 +11,21 @@ body {
 .male-home-img{
     width:800px;
     height:800px;
-    position: fixed;
-    left:100px;
+    position: absolute;
+    left:0px;
 }
 
 .imagenes-laterales{
     width:800px;
     height:200px;
-    position: fixed;
-    right:50px;
+    position: absolute;
+    right:0px;
 }
 
 .imagenes-laterales2{
     width:800px;
     height:200px;
-    position: fixed;
+    position: absolute;
     right:50px;
     margin:50px;
 }
