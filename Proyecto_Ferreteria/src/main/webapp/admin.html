@@ -12,11 +12,12 @@
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
     <link href="css/index.css" rel="stylesheet">
     <link href="css/admin.css" rel="stylesheet">
+    <link href="css/footer.css" rel="stylesheet">
 </head>
 
 <body>
     <header id="ferr-navbar"></header>
-    <main class="mx-5">
+    <main class="mx-5 admin-view">
         <div class="container-fluid pt-4">
             <div class="row">
                 <div class="container-md col-3 pb-4">
@@ -28,7 +29,8 @@
                                     <a id="adm-producto" class="btn bg-light-red btn-block active white">Productos</a>
                                 </p>
                                 <p>
-                                    <a id="adm-categorias" class="btn bg-light-red btn-block active white">Categorias</a>
+                                    <a id="adm-categorias"
+                                        class="btn bg-light-red btn-block active white">Categorias</a>
                                 </p>
                             </div>
                         </div>
@@ -45,60 +47,110 @@
             </div>
         </div>
     </main>
-    
-    
-      <footer class="mt-2">
-                <div class="container-fluid">
-                    <div class="row p-5 bg-danger text-white">
-                        <div class="col-xs-12 col-md-6 col-lg-3">
-                            <p class="h3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FerreProyectos</font></font></p>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-lg-3">
-                            <p class="h5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contactos</font></font></p>
-                            <div class="mb-3">
-                                <a class="text-white text-decoration-none"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(57)3024581235</font></font></a>
-                            </div>
-                            <div class="mb-3">
-                                <a class="text-white text-decoration-none"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ferreproyectos@gmail.com</font></font></a>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-lg-3">
-                            <p class="h5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Creadores</font></font></p>
-                            <div class="mb-3">
-                                <a class="text-white text-decoration-none" href="https://github.com/EdwinB5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Edwin Becerra Bedoya</font></font></a>
-                            </div>
-                            <div class="mb-3">
-                                <a class="text-white text-decoration-none" href="https://github.com/AndersonPM-HUB"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Anderson Arbey Pedroza Mogollon</font></font></a>
-                            </div>
-                            <div class="mb-3">
-                                <a class="text-white text-decoration-none" href="https://github.com/LuVaSaSa"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Luna Valentina Sánchez Saldarriaga</font></font></a>
-                            </div>
-                            <div class="mb-3">
-                                <a class="text-white text-decoration-none" href="https://github.com/vivianlrv"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vivian Lorena Rico Valdés</font></font></a>
-                            </div>
-                            <div class="mb-3">
-                                <a class="text-white text-decoration-none" href="https://github.com/Johnatan08"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Juanatán David Caicedo Valencia</font></font></a>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6 col-lg-3">
-                            <p class="h5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Terminos Legales</font></font></p>
-                            <div class="textwidget custom-html-widget"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                                El uso de este sitio está sujeto a condiciones de uso expresas. </font><font style="vertical-align: inherit;">Al utilizar este sitio, usted acepta las Cláusulas de confidencialidad y nuestra política de tratamiento de datos personales.
-                                </font></font></div>
 
-                        </div>
-
+    <footer class="fter mt-2">
+        <div class="container-fluid">
+            <div class="row p-5 bg-danger text-white">
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h3">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">FerreProyectos</font>
+                        </font>
+                    </p>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h5">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Contactos</font>
+                        </font>
+                    </p>
+                    <div class="mb-3">
+                        <a class="text-white text-decoration-none">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">(57)3024581235</font>
+                            </font>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a class="text-white text-decoration-none">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">ferreproyectos@gmail.com</font>
+                            </font>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h5">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Creadores</font>
+                        </font>
+                    </p>
+                    <div class="mb-3">
+                        <a class="text-white text-decoration-none" href="https://github.com/EdwinB5">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Edwin Fernando Becerra Bedoya</font>
+                            </font>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a class="text-white text-decoration-none" href="https://github.com/AndersonPM-HUB">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Anderson Arbey Pedroza Mogollon</font>
+                            </font>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a class="text-white text-decoration-none" href="https://github.com/LuVaSaSa">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Luna Valentina Sánchez Saldarriaga</font>
+                            </font>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a class="text-white text-decoration-none" href="https://github.com/vivianlrv">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Vivian Lorena Rico Valdés</font>
+                            </font>
+                        </a>
+                    </div>
+                    <div class="mb-3">
+                        <a class="text-white text-decoration-none" href="https://github.com/Johnatan08">
+                            <font style="vertical-align: inherit;">
+                                <font style="vertical-align: inherit;">Juanatán David Caicedo Valencia</font>
+                            </font>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 col-lg-3">
+                    <p class="h5">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">Terminos Legales</font>
+                        </font>
+                    </p>
+                    <div class="textwidget custom-html-widget">
+                        <font style="vertical-align: inherit;">
+                            <font style="vertical-align: inherit;">
+                                El uso de este sitio está sujeto a condiciones de uso expresas. </font>
+                            <font style="vertical-align: inherit;">Al utilizar este sitio, usted acepta las Cláusulas de
+                                confidencialidad y nuestra política de tratamiento de datos personales.
+                            </font>
+                        </font>
                     </div>
 
                 </div>
 
-            </footer>
+            </div>
+
+        </div>
+
+    </footer>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    
+
     <script src="js/usuarios.js"></script>
     <script src="js/productos.js"></script>
     <script src="js/cookies.js"></script>
