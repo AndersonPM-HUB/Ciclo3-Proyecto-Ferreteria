@@ -44,3 +44,7 @@ body {
 .page-item.active .page-link{
     background-color: #ff4d4d; 
 }
+
+.nav-content{
+    color: white;
+}
