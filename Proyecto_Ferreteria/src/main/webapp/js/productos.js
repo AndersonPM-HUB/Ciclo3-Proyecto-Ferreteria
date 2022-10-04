@@ -84,7 +84,7 @@ function mostrarProductos(productos) {
                 '<p class="card-text">Precio Unidad: ' + productos.precioUnidad + '</p>' +
                 '<p class="card-text">Stock: ' + productos.cantidad + '</p>' +
                 '<div class="container-fluid mt-5 text-center">' +
-                '<a href="#" class="btn btn-danger" >Añadir al carrito</a>' +
+                '<a href="#" class="btn btn-danger " onclick="añadirProducto('+productos.id+')">Añadir al carrito</a>' +
                 '</div>' +
                 '</div>' +
                 '<div class="card-footer text-center text-muted">' +
