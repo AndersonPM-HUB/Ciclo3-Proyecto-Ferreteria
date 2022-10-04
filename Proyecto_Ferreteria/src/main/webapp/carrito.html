@@ -9,6 +9,7 @@
     <link href="css/index.css" rel="stylesheet">
     <link href="css/carrito.css" rel="stylesheet">
     <link href="css/footer.css" rel="stylesheet">
+    <link href="css/navbar-carrito.css" rel="stylesheet">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/logo.jpg">
@@ -20,32 +21,49 @@
     <br>
     <br><!-- comment -->
     <br>
-    <main class="carrito-view">
-        <div class="card carrito-contenedor">
+    <main class="carrito-view pb-5">
+        <div class="card carrito-contenedor mb-5 pb-5">
             <div class="row">
-                <div class="col-md-8 cart">
+                <div class="col-md-9 cart">
                     <div class="title">
                         <div class="row">
                             <div class="col">
                                 <h4><b>Carrito compras</b></h4>
                             </div>
-
                         </div>
                     </div>
+                    <div id="cart-alert" class="alert bg-light-red text-light text-center">
+                        No hay productos en el carrito
+                    </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="shopping-cart-header">
-                                <h6>Producto</h6>
+                                <p id="carrito-label-1" class="d-none"><strong>Producto</strong></p></br>
+                                <div id="carrito-producto-nombre"></div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="shopping-cart-header text-center">
+                                <p id="carrito-label-2" class="d-none"><strong>Precio</strong></p></br>
+                                  <div id="carrito-producto-precio"></div>
                             </div>
                         </div>
                         <div class="col-2">
-                            <div class="shopping-cart-header">
-                                <h6 class="text-truncate">Precio</h6>
+                            <div class="shopping-cart-header text-center">
+                                <p id="carrito-label-3" class="d-none"><strong>Cantidad</strong></p></br>
+                                  <div id="carrito-producto-cantidad"></div>
                             </div>
                         </div>
-                        <div class="col-4">
-                            <div class="shopping-cart-header">
-                                <h6>Cantidad</h6>
+                         <div class="col-2">
+                            <div class="shopping-cart-header text-center">
+                                <p id="carrito-label-4" class="d-none"><strong>Total</strong></p></br>
+                                  <div id="carrito-producto-total"></div >
+                            </div>
+                        </div> 
+                        <div class="col-1">
+                            <div class="shopping-cart-header align-items-center text-center">
+                                 <p id="carrito-label-5" class="d-none"><strong></strong></p></br>
+                                  <div id="carrito-borrar-producto"></div >
                             </div>
                         </div>
                     </div>
@@ -55,13 +73,14 @@
                     <div class="back-to-shop"><a href="productos.html">&leftarrow;</a><span class="text-muted">Seguir
                             comprando</span></div>
                 </div>
-                <div class="col-md-4 summary">
+                <div class="col-md-3 summary">
                     <div>
                         <h5><b>RESUMEN COMPRA</b></h5>
                     </div>
                     <hr>
-
-                    <button class="btn  comprarButton">TERMINAR COMPRA</button>
+                    <div class="text-right" id="carrito-total-compra"></div>
+                    <button class="btn comprarButton">Terminar compra</button>
+                    <button id="carrito-vaciar" class="btn comprarButton">Limpiar carrito</button>
                 </div>
             </div>
 
@@ -167,6 +186,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/cookies.js"></script>
     <script src="js/usuarios.js"></script>
     <script src="js/productos.js"></script>

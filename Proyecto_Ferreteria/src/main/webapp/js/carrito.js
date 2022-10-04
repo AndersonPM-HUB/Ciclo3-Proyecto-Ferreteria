@@ -1,118 +1,138 @@
-const addToShoppingCartButtons = document.querySelectorAll('.addToCart');
-addToShoppingCartButtons.forEach((addToCartButton) => {
-  addToCartButton.addEventListener('click', addToCartClicked);
+$(document).ready(function () {
+    $(window).ready(function () {
+        cargarCarrito(); 
+    });
+    
+    $("#carrito-vaciar").on("click", function(event){
+        event.preventDefault();
+        vaciarCarrito();
+    })
 });
 
-const comprarButton = document.querySelector('.comprarButton');
-comprarButton.addEventListener('click', comprarButtonClicked);
-
-const shoppingCartItemsContainer = document.querySelector(
-  '.shoppingCartItemsContainer'
-);
-
-function addToCartClicked(event) {
-  const button = event.target;
-  const item = button.closest('.item');
-
-  const itemTitle = item.querySelector('.item-title').textContent;
-  const itemPrice = item.querySelector('.item-price').textContent;
-  const itemImage = item.querySelector('.item-image').src;
-
-  addItemToShoppingCart(itemTitle, itemPrice, itemImage);
+function añadirProducto(id) { 
+    $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletCarritoAgregar",
+        data: $.param({
+            idProducto: id,
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            if (parsedResult != false) {
+                console.log("Producto añadido", parsedResult)
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer),
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                Toast.fire({
+                   icon: 'success',
+                   title: '¡Producto agregado con éxito!'
+                });
+            }
+        }
+    });
 }
 
-function addItemToShoppingCart(itemTitle, itemPrice, itemImage) {
-  const elementsTitle = shoppingCartItemsContainer.getElementsByClassName(
-    'shoppingCartItemTitle'
-  );
-  for (let i = 0; i < elementsTitle.length; i++) {
-    if (elementsTitle[i].innerText === itemTitle) {
-      let elementQuantity = elementsTitle[
-        i
-      ].parentElement.parentElement.parentElement.querySelector(
-        '.shoppingCartItemQuantity'
-      );
-      elementQuantity.value++;
-      $('.toast').toast('show');
-      updateShoppingCartTotal();
-      return;
-    }
-  }
-
-const shoppingCartRow = document.createElement('div');
-  const shoppingCartContent = `
-  <div class="row shoppingCartItem">
-        <div class="col-6">
-            <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                <img src=${itemImage} class="shopping-cart-image">
-                <h6 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">${itemTitle}</h6>
-            </div>
-        </div>
-        <div class="col-2">
-            <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                <p class="item-price mb-0 shoppingCartItemPrice">${itemPrice}</p>
-            </div>
-        </div>
-        <div class="col-4">
-            <div
-                class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
-                <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
-                    value="1">
-                <button class="btn btn-danger buttonDelete" type="button">X</button>
-            </div>
-        </div>
-    </div>`;
-  shoppingCartRow.innerHTML = shoppingCartContent;
-  shoppingCartItemsContainer.append(shoppingCartRow);
-
-  shoppingCartRow
-    .querySelector('.buttonDelete')
-    .addEventListener('click', removeShoppingCartItem);
-
-  shoppingCartRow
-    .querySelector('.shoppingCartItemQuantity')
-    .addEventListener('change', quantityChanged);
-
-  updateShoppingCartTotal();
+function cargarCarrito() {
+    $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletListarCarrito",
+        data: $.param,
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            if (parsedResult != false) {
+                for (let i = 1; i <= 5; i++){
+                  $("#carrito-label-" + i).removeClass("d-none");  
+                }
+                $("#cart-alert").addClass("d-none");
+                mostrarCarrito(parsedResult);
+            }else{
+                console.log("Test")
+            }
+        }
+    });
 }
 
-function updateShoppingCartTotal() {
-  let total = 0;
-  const shoppingCartTotal = document.querySelector('.shoppingCartTotal');
-
-  const shoppingCartItems = document.querySelectorAll('.shoppingCartItem');
-
-  shoppingCartItems.forEach((shoppingCartItem) => {
-    const shoppingCartItemPriceElement = shoppingCartItem.querySelector(
-      '.shoppingCartItemPrice'
-    );
-    const shoppingCartItemPrice = Number(
-      shoppingCartItemPriceElement.textContent.replace('$', '')
-    );
-    const shoppingCartItemQuantityElement = shoppingCartItem.querySelector(
-      '.shoppingCartItemQuantity'
-    );
-    const shoppingCartItemQuantity = Number(
-      shoppingCartItemQuantityElement.value
-    );
-    total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
-  });
-  shoppingCartTotal.innerHTML = `${total.toFixed(2)}€`;
+function vaciarCarrito(){
+     $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletCarritoVaciar",
+        data: $.param,
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            if (parsedResult != false) {
+                window.location.reload();
+            }
+        }
+    });
 }
 
-function removeShoppingCartItem(event) {
-  const buttonClicked = event.target;
-  buttonClicked.closest('.shoppingCartItem').remove();
-  updateShoppingCartTotal();
+function borrarProducto(id){
+     $.ajax({
+        type: "GET",
+        dataType: "html",
+        url: "./ServletCarritoEliminar",
+        data: $.param({
+            idProducto: id,
+        }),
+        success: function (result) {
+            let parsedResult = JSON.parse(result);
+            if (parsedResult != false) {
+                window.location.reload();
+            }
+        }
+    });
 }
 
-function quantityChanged(event) {
-  const input = event.target;
-  input.value <= 0 ? (input.value = 1) : null;
-  updateShoppingCartTotal();
+function mostrarCarrito(listaProductos) {
+    let contenidoNombre = "";
+    let contenidoPrecio = "";
+    let contenidoCantidad = "";
+    let contenidoTotal = "";
+    let contenidoBoton = "";
+    let totalProductos = 0;
+    
+    $.each(listaProductos, function (index, producto) {
+
+        contenidoNombre += "<p>" + producto.nombre + "</p></br>";
+        contenidoPrecio += "<p>$ " + producto.precioUnidad + "</p></br>";
+        contenidoCantidad += "<p>" + producto.cantidad + "</p></br>";
+        contenidoTotal += "<p>$ " + (producto.precioUnidad * producto.cantidad) + "</p></br>";
+        contenidoBoton += '<p><a href="javascript:void(0)" class="btn btn-danger" onclick="confEliminar('+producto.id+')">x</a></p>';
+        totalProductos += producto.precioUnidad * producto.cantidad;
+    });
+
+    $('#carrito-producto-nombre').html(contenidoNombre);
+    $('#carrito-producto-precio').html(contenidoPrecio);
+    $('#carrito-producto-cantidad').html(contenidoCantidad);
+    $('#carrito-producto-total').html(contenidoTotal);
+    $('#carrito-borrar-producto').html(contenidoBoton);
+    $('#carrito-total-compra').html("$ " + totalProductos);
 }
 
-function comprarButtonClicked() {
-  shoppingCartItemsContainer.innerHTML = '';
-  updateShoppingCartTotal();
+function confEliminar(idProducto) {
+    Swal.fire({
+        title: '¿Estás seguro que quieres eliminar este producto del carrito?',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        icon: 'warning',
+        customClass: {
+            confirmButton: 'bg-danger',
+            cancelButton: 'bg-dark'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+           borrarProducto(idProducto);
+        }
+    })
 }

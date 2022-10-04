@@ -210,4 +210,40 @@ public class ProductosController implements IProductosController {
         return gson.toJson(listaProductos);
 
     }
+    
+    
+    
+    public Producto traerProducto(int id) {
+        DBConnection con = new DBConnection();
+
+      
+        String sql = "SELECT * FROM productos WHERE id = '" + id + "'";
+      
+        try {
+            Statement st = con.getConnection().createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                
+                int idProducto = rs.getInt("id");
+                String nombre = rs.getString("nombre");
+                int cantidad = rs.getInt("cantidad");
+                String descripcion = rs.getString("descripcion");
+                double precio = rs.getDouble("precio_unidad");
+                String imagen = rs.getString("imagen");
+
+                Producto p = new Producto(idProducto, nombre, cantidad, descripcion, precio, imagen);
+             
+                return p;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+
+        } finally {
+            con.desconectar();
+        }
+
+        return null; 
+
+    }
 }
